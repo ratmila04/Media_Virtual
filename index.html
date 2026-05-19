@@ -50,7 +50,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HALAMAN LOGIN (KILAU MINIMALIS) --- */
+        /* --- HALAMAN LOGIN --- */
         .login-screen { 
             display: flex; justify-content: center; align-items: center; min-height: 100vh; 
         }
@@ -124,7 +124,7 @@
         .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
         .chart-box { 
             background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); 
-            padding: 20px; border-radius: 12px; height: 220px; position: relative; 
+            padding: 20px; border-radius: 12px; height: 240px; position: relative; 
             box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
         } 
         
@@ -174,8 +174,10 @@
         .fraction span { display: block; }
         .fraction .numerator { border-bottom: 2px solid var(--text-light); padding-bottom: 3px; }
         .fraction .denominator { padding-top: 3px; }
-        .akar { font-size: 22px; vertical-align: middle; margin-right: -4px; color: #38bdf8; }
-        .garis-akar { border-top: 2px solid var(--text-light); display: inline-block; padding: 4px 6px 0 6px; vertical-align: middle; }
+        
+        /* FIX VISUAL AKAR KUADRAT */
+        .akar { font-size: 24px; vertical-align: middle; margin-right: -2px; color: #38bdf8; font-weight: bold; }
+        .garis-akar { border-top: 2px solid var(--text-light); display: inline-block; padding: 2px 6px 0 6px; vertical-align: middle; }
 
         /* Desain Opsi Kuis */
         .opsi-container { display: flex; flex-direction: column; gap: 14px; margin-top: 25px; }
@@ -240,7 +242,7 @@
                     <ol style="line-height: 2.2; font-size: 15px; color: #e2e8f0;">
                         <li>Gunakan menu klik pada <b>bar navigasi atas</b> untuk beralih antar segmen modul halaman.</li>
                         <li>Pelajari ringkasan materi konseptual secara terstruktur pada modul <b>Ukuran Pemusatan</b> dan <b>Ukuran Penyebaran</b>.</li>
-                        <li>Gunakan modul <b>Laboratorium Data</b> untuk membantu Anda memvalidasi pengerjaan hitungan manual tugas perkuliahan Anda secara otomatis sekaligus menggambar diagram grafik mini yang rapi.</li>
+                        <li>Gunakan modul <b>Laboratorium Data</b> untuk membantu Anda memvalidasi pengerjaan hitungan manual tugas perkuliahan Anda secara otomatis sekaligus menggambar grafik statistik mini yang rapi.</li>
                         <li>Kerjakan paket <b>Kuis Evaluasi (10 Soal)</b> setelah selesai membaca materi untuk menguji tingkat capaian pemahaman kompetensi Anda.</li>
                     </ol>
                 </div>
@@ -252,7 +254,7 @@
                     <p style="color: var(--text-muted);">Ukuran pemusatan digunakan untuk mendeteksi kecenderungan letak titik nilai pusat dari serangkaian kelompok data sampel.</p>
                     
                     <h3>1. Mean (Rata-rata Hitung)</h3>
-                    <p>Jumlah total nilai seluruh data amatan dibagi dengan banyaknya ukuran kuantitas sampel data ($n$):</p>
+                    <p>Jumlah total nilai seluruh data amatan dibagi dengan banyaknya ukuran kuantitas sampel data (n):</p>
                     <div class="rumus-box">
                         Mean (x̄) = 
                         <div class="fraction">
@@ -274,7 +276,7 @@
                     </ul>
 
                     <h3>3. Kuartil (Q<sub>1</sub>, Q<sub>2</sub>, Q<sub>3</sub>)</h3>
-                    <p>Nilai pembagi yang mengelompokkan barisan data terurut menjadi 4 bagian sama besar. Letak urutan posisi indeks kuartil ke-$i$ ditentukan dengan:</p>
+                    <p>Nilai pembagi yang mengelompokkan barisan data terurut menjadi 4 bagian sama besar. Letak urutan posisi indeks kuartil ke-i ditentukan dengan:</p>
                     <div class="rumus-box">
                         Posisi Q<sub>i</sub> = 
                         <div class="fraction">
@@ -316,7 +318,7 @@
                     <h3>2. Standar Deviasi Sampel / Simpangan Baku (s)</h3>
                     <p>Dihitung dengan menarik nilai operasi akar pangkat dua dari hasil akumulasi nilai parameter varians sampel:</p>
                     <div class="rumus-box">
-                        s = <span class="akar">&mu;</span><span class="garis-akar">s<sup>2</sup></span>
+                        s = <span class="akar">&radic;</span><span class="garis-akar">s<sup>2</sup></span>
                     </div>
 
                     <h3>3. Rentang &amp; Rentang Antar Kuartil</h3>
@@ -399,7 +401,7 @@
 
             <div id="pageKuis" class="page-section">
                 <div class="card">
-                    <h2>📝 Lembar Kuis Evaluasi Mahasiswa</h2>
+                    <h2>📝 Lembar Kuis Evaluasi Mahasiswa (10 Soal)</h2>
                     <div id="boxKontenSoal">
                         <h3 id="txtPertanyaan" style="text-align:left; background: rgba(15,23,42,0.4); padding:20px; border-radius:10px; border-left:4px solid var(--accent-color); font-size: 18px; margin-top: 0; line-height: 1.6;">Memuat pertanyaan ujian...</h3>
                         <div class="opsi-container" id="boxDaftarOpsi"></div>
@@ -561,7 +563,7 @@
             document.getElementById("boxHasilLab").style.display = "block";
 
             // ==========================================================================
-            // LOGIKA GENERATE DIAGRAM GRAFIK MINI - RESPONSIVE & STABIL
+            // LOGIKA GENERATE DIAGRAM GRAFIK MINI - DENGAN JUDUL SUMBU DAN PERSENTASE PIE
             // ==========================================================================
             let labelsGrafik = Object.keys(frekuensi);
             let dataFrekuensi = Object.values(frekuensi);
@@ -570,8 +572,9 @@
             if(referensiPieChart) referensiPieChart.destroy();
 
             // Atur warna font bawaan grafik Chart.js menjadi putih terang agar kontras
-            Chart.defaults.color = '#e2e8f0';
+            Chart.defaults.color = '#cbd5e1';
 
+            // 1. Pemrosesan Bar Chart (Grafik Batang dengan Judul Sumbu X dan Y)
             let ctxBar = document.getElementById('barChartCanvas').getContext('2d');
             referensiBarChart = new Chart(ctxBar, {
                 type: 'bar',
@@ -584,23 +587,54 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: { 
-                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { font: { size: 10 }, stepSize: 1 } }, 
-                        x: { grid: { display: false }, ticks: { font: { size: 10 } } } 
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: 'rgba(255,255,255,0.05)' }, 
+                            ticks: { font: { size: 10 }, stepSize: 1 },
+                            title: {
+                                display: true,
+                                text: 'Frekuensi (y)',
+                                color: '#cbd5e1',
+                                font: { size: 11, weight: '600' }
+                            }
+                        }, 
+                        x: { 
+                            grid: { display: false }, 
+                            ticks: { font: { size: 10 } },
+                            title: {
+                                display: true,
+                                text: 'Nilai Data (x)',
+                                color: '#cbd5e1',
+                                font: { size: 11, weight: '600' }
+                            }
+                        } 
                     }
                 }
+            });
+
+            // 2. Pemrosesan Pie Chart (Diagram Lingkaran dengan Perhitungan Persentase Otomatis)
+            let totalDataPie = dataFrekuensi.reduce((a, b) => a + b, 0);
+            let labelsDenganPersen = labelsGrafik.map((label, index) => {
+                let hitungPersen = ((dataFrekuensi[index] / totalDataPie) * 100).toFixed(1);
+                return label + " (" + hitungPersen + "%)";
             });
 
             let ctxPie = document.getElementById('pieChartCanvas').getContext('2d');
             referensiPieChart = new Chart(ctxPie, {
                 type: 'pie',
                 data: {
-                    labels: labelsGrafik,
+                    labels: labelsDenganPersen,
                     datasets: [{ data: dataFrekuensi, backgroundColor: ['#6366f1', '#10b981', '#38bdf8', '#fbbf24', '#f87171'], borderWidth: 0 }]
                 },
                 options: { 
                     responsive: true, 
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'right', labels: { font: { size: 10 } } } }
+                    plugins: { 
+                        legend: { 
+                            position: 'right', 
+                            labels: { font: { size: 10 } } 
+                        } 
+                    }
                 }
             });
         }
