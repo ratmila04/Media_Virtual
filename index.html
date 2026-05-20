@@ -232,22 +232,22 @@
         <div class="main-content">
             
             <div class="status-bar">
-                <div style="color: var(--text-muted); font-weight: 500;">Modul Interaktif: Landasan Pengolahan Data Sub-CPMK1</div>
+                <div style="color: var(--text-muted); font-weight: 500;">Modul Interaktif: Landasan Pengolahan Data</div>
                 <div style="font-weight: 700; color: #ffffff;" id="txtStatusNama">Mahasiswa: -</div>
             </div>
 
             <div id="pageDashboard" class="page-section active-section">
                 <div class="card">
                     <h2 style="margin-top: 0;">👋 Selamat Datang di Portal Virtual</h2>
-                    <p style="color: var(--text-muted); line-height: 1.7; font-size: 15px;">Platform kelas digital terintegrasi ini dikembangkan untuk mendampingi Anda memahami dasar pengumpulan, pengolahan, serta hubungan representasi data sampel dengan populasi secara virtual.</p>
+                    <p style="color: var(--text-muted); line-height: 1.7; font-size: 15px;">Platform kelas digital terintegrasi ini dikembangkan untuk mendampingi Anda memahami dasar pengumpulan, struktur jenis data, pengolahan, serta penarikan kesimpulan statistik amatan secara visual dan akurat.</p>
                 </div>
 
                 <div class="card">
                     <h2 style="margin-top: 0; color: #38bdf8;">🧠 Pengantar 1: Statistika Deskriptif vs Inferensial</h2>
                     <p style="line-height: 1.6; color: #cbd5e1;">Dalam duni perkuliahan matematika, statistika dibagi menjadi dua cabang berdasarkan tujuan analisisnya:</p>
                     <ul style="line-height: 1.8; color: #cbd5e1;">
-                        <li><b>Statistika Deskriptif:</b> Berfokus pada metode pengumpulan, pengurutan, peringkasan, dan penyajian data kelompok sampel secara informatif (menggunakan tabel frekuensi, grafik, nilai tengah, varians) tanpa melakukan penarikan kesimpulan umum.</li>
-                        <li><b>Statistika Inferensial:</b> Berfokus pada penarikan kesimpulan, perkiraan, estimasi parameter, serta pengujian hipotesis mengenai suatu kondisi populasi berdasarkan hasil analisis kelompok data sampel.</li>
+                        <li><b>Statistika Deskriptif:</b> Berfokus pada metode pengumpulan, pengurutan, meringkas, dan menyajikan data amatan secara informatif (menggunakan grafik, mean, kuartil, varians) tanpa melakukan penarikan kesimpulan umum.</li>
+                        <li><b>Statistika Inferensial:</b> Berfokus pada penarikan kesimpulan, pengujian hipotesis, perkiraan, dan estimasi parameter populasi berdasarkan hasil analisis kelompok data sampel.</li>
                     </ul>
 
                     <h4 style="margin-bottom: 10px; margin-top: 25px;">📊 Tabel Perbedaan Karakteristik Utama</h4>
@@ -259,47 +259,94 @@
                         </tr>
                         <tr>
                             <td><b>Tujuan Utama</b></td>
-                            <td>Menggambarkan karakteristik data yang ada.</td>
-                            <td>Membuat generalisasi tentang kelompok besar (Populasi).</td>
+                            <td>Menggambarkan karakteristik data kelompok sampel.</td>
+                            <td>Membuat generalisasi/kesimpulan tentang Populasi luas.</td>
                         </tr>
                         <tr>
                             <td><b>Bentuk Output</b></td>
-                            <td>Tabel frekuensi, diagram grafik, Mean, Median, Modus, Varians.</td>
-                            <td>Nilai probabilitas (p-value), uji-t, ANOVA, analisis regresi.</td>
+                            <td>Tabel frekuensi, diagram batang/lingkaran, Mean, Varians.</td>
+                            <td>Nilai signifikansi (p-value), uji-t, ANOVA, regresi linear.</td>
                         </tr>
                         <tr>
-                            <td><b>Ruang Lingkup</b></td>
-                            <td>Terbatas hanya pada objek data yang diamati.</td>
-                            <td>Berlaku luas untuk seluruh populasi.</td>
+                            <td><b>Teori Peluang</b></td>
+                            <td>Tidak memerlukan teori probabilitas/peluang.</td>
+                            <td>Skat bergantung pada hukum peluang/sampling.</td>
                         </tr>
                     </table>
                 </div>
 
                 <div class="card">
                     <h2 style="margin-top: 0; color: #a855f7;">🎯 Pengantar 2: Memahami Populasi dan Sampel</h2>
-                    <p style="line-height: 1.6; color: #cbd5e1;">Untuk dapat mempraktikkan ilmu statistika dengan benar, mahasiswa wajib memahami objek utama data:</p>
+                    <p style="line-height: 1.6; color: #cbd5e1;">Sebelum mengolah data, Anda harus mengenali batasan objek amatan dalam penelitian:</p>
                     
                     <div class="concept-grid">
                         <div class="concept-box">
                             <h3 style="color: var(--accent-color); margin-top: 0;">👥 Populasi</h3>
-                            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;"><b>Populasi</b> adalah keseluruhan objek, wilayah, kelompok, atau totalitas individu yang memiliki karakteristik tertentu yang ingin diteliti.</p>
+                            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;"><b>Populasi</b> adalah keseluruhan objek, totalitas kelompok individu, atau wilayah generalisasi yang memiliki karakteristik tertentu yang ingin diteliti secara utuh.</p>
                             <div class="pop-circle">Semua Mahasiswa di Kampus
                                 <div style="position: absolute; bottom: 10px; right: 10px;" class="sam-circle">Sampel</div>
                             </div>
                         </div>
                         <div class="concept-box">
                             <h3 style="color: var(--success-color); margin-top: 0;">🧪 Sampel</h3>
-                            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;"><b>Sampel</b> adalah sebagian kecil atau bagian representatif yang diambil langsung dari populasi untuk mewakili karakteristik seluruh kelompok besar tersebut.</p>
+                            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;"><b>Sampel</b> adalah sebagian kecil atau himpunan bagian representatif yang diambil langsung dari populasi untuk mewakili karakteristik seluruh kelompok besar tersebut.</p>
                             <div style="display: flex; justify-content: center; align-items: center; height: 140px;">
                                 <div class="sam-circle" style="width: 100%; height: 100px; border-radius: 12px; font-weight: bold; color: white;">20 Mahasiswa yang Diwawancarai</div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div style="background: rgba(15,23,42,0.3); padding: 15px; border-radius: 8px; border-left: 4px solid #a855f7; margin-top: 15px;">
-                        💡 <b>Analogi Sederhana:</b> Bayangkan Anda sedang memasak kuali besar sayur sup. 
-                        Satu kuali besar sup tersebut adalah <b>Populasi</b>. Untuk mengetahui apakah rasanya sudah pas, Anda cukup mengambil satu sendok makan sup untuk dicicipi. Satu sendok makan sup tersebut adalah <b>Sampel</b>.
-                    </div>
+                <div class="card">
+                    <h2 style="margin-top: 0; color: #10b981;">📏 Pengantar 3: Hierarki Jenis &amp; Skala Pengukuran Data</h2>
+                    <p style="line-height: 1.6; color: #cbd5e1;">Sebelum menentukan rumus statistika, peneliti harus memetakan bentuk datanya berdasarkan pohon hierarki berikut:</p>
+                    
+                    <h3>A. Klasifikasi Sifat: Kualitatif vs Kuantitatif</h3>
+                    <ul style="line-height: 1.8; color: #cbd5e1; margin-bottom: 20px;">
+                        <li><b>Data Kualitatif (Kategorik):</b> Data yang berbentuk deskripsi kata, label, atau atribut non-numerik yang tidak dapat dihitung secara matematis. Contoh: Suku bangsa, warna rambut, jenis pekerjaan, tingkat kepuasan.</li>
+                        <li><b>Data Kuantitatif (Numerik):</b> Data yang berbentuk angka, nilai nyata kuantitatif, dan bernilai matematis. Contoh: Skor ujian, berat badan, jumlah anak, suhu udara.</li>
+                    </ul>
+
+                    <h3>B. Klasifikasi Angka Kuantitatif: Diskrit vs Kontinu</h3>
+                    <p style="color: #cbd5e1;">Data kuantitatif (numerik) dibagi lagi menjadi dua karakter angka amatan:</p>
+                    <ul style="line-height: 1.8; color: #cbd5e1; margin-bottom: 20px;">
+                        <li><b>Data Diskrit:</b> Data hasil dari aktivitas <b>membilang/menghitung</b>, berupa bilangan bulat utuh yang pasti, dan tidak berbentuk pecahan desimal. Contoh: Jumlah mobil di parkiran (5 mobil, tidak mungkin 5.5), jumlah anak, jumlah uang kertas.</li>
+                        <li><b>Data Kontinu:</b> Data hasil dari aktivitas <b>mengukur</b>, nilainya berada dalam rentang kontinu tertentu, dan bisa berbentuk pecahan desimal/komplit. Contoh: Tinggi badan (165.4 cm), berat badan, waktu reaksi detik (3.24 detik), suhu tubuh.</li>
+                    </ul>
+
+                    <h3>C. Empat Skala Pengukuran Karakter Data (Skala NOIR)</h3>
+                    <table class="table-stat" style="font-size: 14px;">
+                        <tr>
+                            <th>Skala Data</th>
+                            <th>Sifat Data</th>
+                            <th>Karakteristik Utama</th>
+                            <th>Contoh Nyata</th>
+                        </tr>
+                        <tr>
+                            <td><b>1. Nominal</b></td>
+                            <td>Kualitatif</td>
+                            <td>Hanya berupa label/kategori klasifikasi nama tanpa ada urutan/tingkatan nilai tertentu.</td>
+                            <td>Jenis Kelamin, Agama, Warna Mata, Asal Kota.</td>
+                        </tr>
+                        <tr>
+                            <td><b>2. Ordinal</b></td>
+                            <td>Kualitatif</td>
+                            <td>Berupa kategori yang sudah memiliki urutan, peringkat, atau tingkatan bertingkat yang jelas. Jarak tidak sama.</td>
+                            <td>Peringkat Kelas (Juara 1, 2, 3), Kepangkatan Militer, Tingkat Pendidikan.</td>
+                        </tr>
+                        <tr>
+                            <td><b>3. Interval</b></td>
+                            <td>Kuantitatif</td>
+                            <td>Data angka kuantitatif berjarak sama, memiliki urutan, tetapi <b>tidak memiliki nilai nol mutlak</b> (nol memiliki arti).</td>
+                            <td>Suhu Udara (0&deg;C bukan berarti tidak ada suhu), Skor IQ, Tahun Masehi.</td>
+                        </tr>
+                        <tr>
+                            <td><b>4. Rasio</b></td>
+                            <td>Kuantitatif</td>
+                            <td>Tingkatan tertinggi. Data kuantitatif berjarak sama, dan <b>memiliki nilai nol mutlak</b> (nol berarti kosong/habis).</td>
+                            <td>Berat Badan (0 kg berarti tidak ada bobot), Jarak Rumah, Pendapatan Bulanan.</td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div class="card">
@@ -307,8 +354,8 @@
                     <ol style="line-height: 2.2; font-size: 15px; color: #e2e8f0;">
                         <li>Gunakan menu klik pada <b>bar navigasi atas</b> untuk beralih antar segmen modul halaman.</li>
                         <li>Pelajari ringkasan materi konseptual secara terstruktur pada modul <b>Ukuran Pemusatan</b> dan <b>Ukuran Penyebaran</b>.</li>
-                        <li>Gunakan modul <b>Laboratorium Data</b> untuk membantu Anda memvalidasi pengerjaan hitungan manual tugas perkuliahan Anda secara otomatis sekaligus menggambar grafik statistik mini yang rapi dengan judul sumbu yang informatif.</li>
-                        <li>Kerjakan paket <b>Kuis Evaluasi (10 Soal)</b> setelah selesai membaca materi untuk menguji tingkat capaian pemahaman kompetensi Anda.</li>
+                        <li>Gunakan modul <b>Laboratorium Data</b> untuk memvalidasi pengerjaan hitungan manual tugas perkuliahan Anda secara otomatis sekaligus menggambar grafik statistik mini yang rapi.</li>
+                        <li>Kerjakan paket <b>Kuis Evaluasi Lengkap (20 Soal)</b> setelah selesai membaca seluruh materi untuk menguji kompetensi Anda.</li>
                     </ol>
                 </div>
             </div>
@@ -466,7 +513,7 @@
 
             <div id="pageKuis" class="page-section">
                 <div class="card">
-                    <h2>📝 Lembar Kuis Evaluasi Mahasiswa (10 Soal)</h2>
+                    <h2>📝 Lembar Kuis Evaluasi Mahasiswa (20 Soal)</h2>
                     <div id="boxKontenSoal">
                         <h3 id="txtPertanyaan" style="text-align:left; background: rgba(15,23,42,0.4); padding:20px; border-radius:10px; border-left:4px solid var(--accent-color); font-size: 18px; margin-top: 0; line-height: 1.6;">Memuat pertanyaan ujian...</h3>
                         <div class="opsi-container" id="boxDaftarOpsi"></div>
@@ -511,7 +558,9 @@
             prosesEngineKalkulatorDanGrafik();
         }
 
+        // AKUMULASI SOAL: TOTAL 20 SOAL YANG DISINKRONKAN DENGAN STRUKTUR TEORI POHON DATA BARU
         const kumpulanSoal = [
+            // [Materi: Pemusatan & Penyebaran Data - Soal 1-10]
             { q: "Diberikan data nilai praktikum: 5, 6, 7, 8, 9. Hitunglah nilai Mean (rata-rata) data tersebut!", a: ["6", "6.5", "7", "7.5"], correct: 2 },
             { q: "Berapakah nilai letak Median dari sekumpulan data acak berikut: 3, 8, 6, 4, 7?", a: ["4", "6", "7", "5"], correct: 1 },
             { q: "Tentukan nilai Median jika variabel data genap terstruktur sebagai berikut: 2, 4, 6, 8.", a: ["4", "5", "6", "4.5"], correct: 1 },
@@ -521,7 +570,21 @@
             { q: "Jika nilai Q1 = 14.5 dan Q3 = 21.0, berapakah nilai Rentang Antar Kuartil (IQR) data tersebut?", a: ["6.5", "7.5", "5.5", "8.0"], correct: 0 },
             { q: "Data pengamatan homogen terukur: 7, 7, 7, 7, 7. Manakah pernyataan yang benar mengenai nilai varians data tersebut?", a: ["Varians bernilai positif", "Varians bernilai negatif", "Varians bernilai nol", "Varians tidak terdefinisi"], correct: 2 },
             { q: "Langkah pertama yang wajib dilakukan sebelum mencari nilai Median dan Kuartil data acak tunggal adalah...", a: ["Menghitung rata-rata", "Mengkuadratkan data", "Mengurutkan data dari terkecil ke terbesar", "Membagi data dengan dua"], correct: 2 },
-            { q: "Nilai parameter Standar Deviasi sampel diperoleh melalui operasi matematika berupa...", a: ["Kuadrat dari nilai varians", "Akar kuadrat dari nilai varians", "Pembagian varians dengan banyak data", "Perkalian varians dengan rata-rata"], correct: 1 }
+            { q: "Nilai parameter Standar Deviasi sampel diperoleh melalui operasi matematika berupa...", a: ["Kuadrat dari nilai varians", "Akar kuadrat dari nilai varians", "Pembagian varians dengan banyak data", "Perkalian varians dengan rata-rata"], correct: 1 },
+            
+            // [Materi: Deskriptif vs Inferensial & Populasi vs Sampel - Soal 11-15]
+            { q: "Cabang ilmu statistika yang bertujuan meringkas, menyajikan, dan mendeskripsikan karakteristik data sampel tanpa menarik kesimpulan populasi disebut...", a: ["Statistika Inferensial", "Statistika Deskriptif", "Statistika Teoretis", "Statistika Non-Parametrik"], correct: 1 },
+            { q: "Manakah di antara pilihan berikut yang merupakan produk keluaran (output) utama statistika deskriptif?", a: ["Nilai p-value uji hipotesis", "Koefisien regresi linear", "Tabel frekuensi dan grafik Mean", "Hasil pengujian ANOVA"], correct: 2 },
+            { q: "Keseluruhan totalitas unit, kelompok, atau individu objek yang ingin diteliti karakteristiknya dalam pengamatan ilmiah dinamakan...", a: ["Sampel acak", "Populasi", "Variabel", "Parameter amatan"], correct: 1 },
+            { q: "Himpunan bagian representatif yang diambil dari kelompok besar untuk mewakili kondisi populasi sesungguhnya dinamakan...", a: ["Sampel", "Kluster data", "Eksperimen", "Varians kuadrat"], correct: 0 },
+            { q: "Seorang peneliti mengambil 50 mahasiswa dari total 2000 mahasiswa di suatu fakultas. Angka 2000 menggambarkan nilai dari...", a: ["Ukuran Sampel", "Ukuran Populasi", "Variansi Kuantitatif", "Skala Rasio"], correct: 1 },
+            
+            // [Materi Baru: Kualitatif vs Kuantitatif & Diskrit vs Kontinu & Skala NOIR - Soal 16-20]
+            { q: "Data yang berbentuk deskripsi kata, label, atau atribut non-numerik (seperti Suku Bangsa, Warna Mata, Jenis Pekerjaan) diklasifikasikan sebagai data...", a: ["Kuantitatif", "Diskrit", "Kualitatif", "Kontinu"], correct: 2 },
+            { q: "Data numerik yang diperoleh dari aktivitas 'membilang atau menghitung' dan selalu menghasilkan bilangan bulat utuh tanpa pecahan (contoh: Jumlah Anak, Jumlah Mobil) disebut data...", a: ["Kualitatif", "Kontinu", "Diskrit", "Ordinal"], correct: 2 },
+            { q: "Data hasil aktivitas 'mengukur' yang nilainya berada dalam rentang kontinu dan bisa berbentuk pecahan desimal (contoh: Tinggi Badan 165.4 cm, Waktu Reaksi 3.2 detik) adalah...", a: ["Data Diskrit", "Data Kontinu", "Data Nominal", "Data Kualitatif"], correct: 1 },
+            { q: "Variabel 'Tingkat Pendidikan Terakhir (SD, SMP, SMA, S1)' memiliki karakteristik urutan tingkatan yang jelas, namun jarak antar peringkat tidak sama. Data ini berada pada skala...", a: ["Nominal", "Rasio", "Interval", "Ordinal"], correct: 3 },
+            { q: "Manakah pernyataan di bawah ini yang paling tepat menggambarkan karakteristik utama skala Rasio dalam statistika?", a: ["Hanya berupa kategori kata", "Memiliki nilai letak urutan peringkat saja", "Nol tidak bersifat mutlak", "Memiliki nilai nol mutlak (nilai 0 berarti objek tidak ada/kosong)"], correct: 3 }
         ];
 
         function navigasiKe(sectionId, menuId) {
@@ -627,19 +690,15 @@
 
             document.getElementById("boxHasilLab").style.display = "block";
 
-            // ==========================================================================
-            // LOGIKA GENERATE DIAGRAM GRAFIK MINI - DENGAN JUDUL SUMBU DAN PERSENTASE PIE
-            // ==========================================================================
+            // LOGIKA GENERATE DIAGRAM GRAFIK
             let labelsGrafik = Object.keys(frekuensi);
             let dataFrekuensi = Object.values(frekuensi);
 
             if(referensiBarChart) referensiBarChart.destroy();
             if(referensiPieChart) referensiPieChart.destroy();
 
-            // Atur warna font bawaan grafik Chart.js menjadi putih terang agar kontras
             Chart.defaults.color = '#cbd5e1';
 
-            // 1. Pemrosesan Bar Chart (Grafik Batang dengan Judul Sumbu X dan Y)
             let ctxBar = document.getElementById('barChartCanvas').getContext('2d');
             referensiBarChart = new Chart(ctxBar, {
                 type: 'bar',
@@ -656,28 +715,13 @@
                             beginAtZero: true, 
                             grid: { color: 'rgba(255,255,255,0.05)' }, 
                             ticks: { font: { size: 10 }, stepSize: 1 },
-                            title: {
-                                display: true,
-                                text: 'Frekuensi (y)',
-                                color: '#cbd5e1',
-                                font: { size: 11, weight: '600' }
-                            }
+                            title: { display: true, text: 'Frekuensi (y)' }
                         }, 
-                        x: { 
-                            grid: { display: false }, 
-                            ticks: { font: { size: 10 } },
-                            title: {
-                                display: true,
-                                text: 'Nilai Data (x)',
-                                color: '#cbd5e1',
-                                font: { size: 11, weight: '600' }
-                            }
-                        } 
+                        x: { grid: { display: false }, title: { display: true, text: 'Nilai Data (x)' } } 
                     }
                 }
             });
 
-            // 2. Pemrosesan Pie Chart (Diagram Lingkaran dengan Perhitungan Persentase Otomatis)
             let totalDataPie = dataFrekuensi.reduce((a, b) => a + b, 0);
             let labelsDenganPersen = labelsGrafik.map((label, index) => {
                 let hitungPersen = ((dataFrekuensi[index] / totalDataPie) * 100).toFixed(1);
@@ -694,17 +738,12 @@
                 options: { 
                     responsive: true, 
                     maintainAspectRatio: false,
-                    plugins: { 
-                        legend: { 
-                            position: 'right', 
-                            labels: { font: { size: 10 } } 
-                        } 
-                    }
+                    plugins: { legend: { position: 'right', labels: { font: { size: 10 } } } }
                 }
             });
         }
 
-        // --- SISTEM KUIS ---
+        // --- SISTEM KUIS (20 SOAL LENGKAP) ---
         function bukaKuisNav(menuId) { indeksKuis = 0; poinBenar = 0; navigasiKe('pageKuis', menuId); muatSoalUjian(); }
         function muatSoalUjian() {
             let data = kumpulanSoal[indeksKuis];
@@ -719,7 +758,7 @@
         function tampilkanNilaiAkhir() {
             let finalSkor = Math.round((poinBenar / kumpulanSoal.length) * 100);
             document.getElementById("txtNilaiFinal").innerText = finalSkor;
-            document.getElementById("txtEvaluasiMutu").innerText = finalSkor >= 80 ? "Sangat Memuaskan! Anda berhasil menguasai kompetensi dasar praktikum statistika deskriptif." : "Silakan pelajari kembali rangkuman konsep komputasi kelompok data tunggal.";
+            document.getElementById("txtEvaluasiMutu").innerText = finalSkor >= 80 ? "Sangat Memuaskan! Anda berhasil menguasai seluruh cakupan materi dasar kompetensi praktikum statistika deskriptif." : "Silakan pelajari kembali rangkuman komparasi teori data dan skala NOIR pada halaman dashboard.";
             navigasiKe('pageSkor', 'm-kuis');
         }
     </script>
