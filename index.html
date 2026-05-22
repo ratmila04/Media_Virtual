@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Statistika - Premium Virtual Edition</title>
+    <title>Portal Statistika - Ukuran Pemusatan & Penyebaran Data</title>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         /* ==========================================================================
-           1. CORE VISUAL ENGINE & ANIMATION (CSS GLASSMORPHISM)
+           1. ENGINE VISUAL & TATA LETAK GLASSMORPHISM (CSS)
            ========================================================================== */
         :root {
             --accent-color: #6366f1;
@@ -20,20 +20,17 @@
             --text-muted: #94a3b8;
         }
 
-        /* Animasi Latar Belakang Gradasi Bergerak */
         @keyframes gradientBackground {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Animasi Memudar & Terangkat untuk Transisi Halaman */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Animasi Efek Berkilau Mengalir pada Header */
         @keyframes shineEffect {
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
@@ -51,36 +48,27 @@
         }
 
         /* --- HALAMAN LOGIN --- */
-        .login-screen { 
-            display: flex; justify-content: center; align-items: center; min-height: 100vh; 
-        }
+        .login-screen { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         .login-card {
-            width: 100%; max-width: 400px; 
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            width: 100%; max-width: 400px; background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             padding: 40px; border-radius: 16px; 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(99, 102, 241, 0.15); 
             border: 1px solid rgba(255, 255, 255, 0.1);
             animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* --- BAR NAVIGASI ATAS FUTURISTIK --- */
+        /* --- BAR NAVIGASI ATAS --- */
         .navbar-top {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            color: #ffffff; position: fixed;
-            top: 0; left: 0; right: 0; height: 75px; display: flex;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            color: #ffffff; position: fixed; top: 0; left: 0; right: 0; height: 75px; display: flex;
             align-items: center; justify-content: space-between; padding: 0 40px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08); z-index: 1000;
         }
         .navbar-brand { 
             font-size: 18px; font-weight: 800; letter-spacing: 2px;
-            background: linear-gradient(90deg, #6366f1, #a855f7, #6366f1);
-            background-size: 200% auto;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shineEffect 4s linear infinite;
+            background: linear-gradient(90deg, #6366f1, #a855f7, #6366f1); background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shineEffect 4s linear infinite;
         }
         .navbar-menu { display: flex; list-style: none; margin: 0; padding: 0; height: 100%; gap: 5px; }
         .navbar-menu li {
@@ -92,108 +80,69 @@
             border-bottom: 3px solid var(--accent-color); box-sizing: border-box;
         }
         .btn-logout-nav { 
-            background: linear-gradient(135deg, #ef4444, #b91c1c); padding: 8px 16px; 
-            border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; 
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); transition: all 0.2s;
+            background: linear-gradient(135deg, #ef4444, #b91c1c); padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); transition: all 0.2s;
         }
         .btn-logout-nav:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); }
 
-        /* --- WRAPPER UTAMA KONTEN --- */
-        .app-wrapper { display: none; flex-direction: column; width: 100%; }
+        /* --- KONTEN CONTAINER --- */
         .main-content { margin-top: 110px; padding: 0 40px 40px 40px; max-width: 1150px; margin-left: auto; margin-right: auto; width: 100%; box-sizing: border-box; }
-        
-        .status-bar { 
-            background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(8px);
-            padding: 16px 28px; border-radius: 12px; margin-bottom: 30px; 
-            display: flex; justify-content: space-between; align-items: center; 
-            border: 1px solid rgba(255, 255, 255, 0.05); font-size: 14px; 
-        }
+        .status-bar { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(8px); padding: 16px 28px; border-radius: 12px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255, 255, 255, 0.05); font-size: 14px; }
 
-        /* --- CARD GLASSMORPHISM BERKILAU --- */
         .page-section { display: none; }
         .page-section.active-section { display: block; animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .card { 
-            background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.06); 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); margin-bottom: 30px; 
-        }
+        .card { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 35px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); margin-bottom: 30px; }
 
-        h2, h3 { color: #ffffff; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-
-        /* --- ELEMEN VISUAL POPULASI & SAMPEL --- */
+        h2, h3, h4 { color: #ffffff; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
         .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
         .concept-box { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.08); padding: 20px; border-radius: 12px; }
         .pop-circle { width: 100%; height: 140px; background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, rgba(15,23,42,0.6) 100%); border: 2px dashed var(--accent-color); border-radius: 12px; display: flex; justify-content: center; align-items: center; position: relative; font-weight: bold; }
         .sam-circle { width: 100px; height: 100px; background: rgba(16, 185, 129, 0.2); border: 2px solid var(--success-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 0 15px var(--success-glow); }
 
-        /* --- DIAGRAM GRAFIK KONTRAST SEDERHANA --- */
+        /* --- DIAGRAM GRAFIK --- */
         .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
-        .chart-box { 
-            background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); 
-            padding: 20px; border-radius: 12px; height: 240px; position: relative; 
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
-        } 
+        .chart-box { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); padding: 20px; border-radius: 12px; height: 240px; position: relative; box-shadow: inset 0 0 15px rgba(0,0,0,0.2); } 
         
-        /* Desain Tabel Premium */
         .table-stat { width: 100%; border-collapse: collapse; margin: 20px 0; border-radius: 8px; overflow: hidden; }
         .table-stat th, .table-stat td { border: 1px solid rgba(255, 255, 255, 0.08); padding: 12px; text-align: center; }
         .table-stat th { background-color: rgba(15, 23, 42, 0.8); color: #ffffff; font-weight: 600; }
         .table-stat td { background-color: rgba(30, 41, 59, 0.3); color: var(--text-light); }
 
-        /* Form, Input, & Tombol Glow */
+        /* Form, Input & Tombol */
         .form-group { margin-bottom: 25px; }
         label { display: block; margin-bottom: 10px; font-weight: 600; font-size: 14px; color: #cbd5e1; }
-        input[type="text"], input[type="password"] { 
-            width: 100%; padding: 14px; box-sizing: border-box; 
-            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; font-size: 16px; 
-            background: rgba(15, 23, 42, 0.5); color: #ffffff; transition: all 0.3s;
+        input[type="text"], input[type="password"], textarea { 
+            width: 100%; padding: 14px; box-sizing: border-box; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; font-size: 16px; background: rgba(15, 23, 42, 0.5); color: #ffffff; transition: all 0.3s;
         }
-        input[type="text"]:focus, input[type="password"]:focus { 
-            outline: none; border-color: var(--accent-color); box-shadow: 0 0 12px var(--accent-glow); 
-        }
-        
-        button { 
-            color: white; padding: 14px 24px; border: none; font-weight: 700; 
-            border-radius: 10px; cursor: pointer; font-size: 15px; transition: all 0.3s ease; 
-        }
-        .btn-accent { 
-            background: linear-gradient(135deg, var(--accent-color), #4f46e5); 
-            box-shadow: 0 4px 15px var(--accent-glow); 
-        }
-        .btn-accent:hover { 
-            transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-glow); 
-        }
-        .btn-sample { 
-            background: rgba(51, 65, 85, 0.8); font-size: 13px; padding: 10px 16px; 
-            width: auto; display: inline-block; margin-right: 10px; margin-bottom: 12px; 
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-        }
-        .btn-sample:hover { background: rgba(71, 85, 105, 1); transform: translateY(-1s); }
+        input[type="text"]:focus, input[type="password"]:focus, textarea:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 12px var(--accent-glow); }
+        textarea { resize: vertical; font-family: monospace; }
+
+        button { color: white; padding: 14px 24px; border: none; font-weight: 700; border-radius: 10px; cursor: pointer; font-size: 15px; transition: all 0.3s ease; }
+        .btn-accent { background: linear-gradient(135deg, var(--accent-color), #4f46e5); box-shadow: 0 4px 15px var(--accent-glow); }
+        .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-glow); }
+        .btn-sample { background: rgba(51, 65, 85, 0.8); font-size: 13px; padding: 10px 16px; width: auto; display: inline-block; margin-right: 10px; margin-bottom: 12px; border: 1px solid rgba(255, 255, 255, 0.08); }
+        .btn-sample:hover { background: rgba(71, 85, 105, 1); }
 
         /* FORMAT RUMUS CLEAR INTERAKTIF */
-        .rumus-box { 
-            background: rgba(15, 23, 42, 0.4); border: 1px dashed rgba(99, 102, 241, 0.4); 
-            padding: 18px; border-radius: 10px; text-align: center; font-size: 18px; margin: 20px 0; 
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.05);
-        }
+        .rumus-box { background: rgba(15, 23, 42, 0.4); border: 1px dashed rgba(99, 102, 241, 0.4); padding: 18px; border-radius: 10px; text-align: center; font-size: 18px; margin: 20px 0; box-shadow: 0 0 15px rgba(99, 102, 241, 0.05); }
         .fraction { display: inline-block; vertical-align: middle; text-align: center; padding: 0 6px; font-size: 16px; }
         .fraction span { display: block; }
         .fraction .numerator { border-bottom: 2px solid var(--text-light); padding-bottom: 3px; }
         .fraction .denominator { padding-top: 3px; }
         .akar { font-size: 22px; vertical-align: middle; margin-right: -4px; color: #38bdf8; font-weight: bold; }
         .garis-akar { border-top: 2px solid var(--text-light); display: inline-block; padding: 2px 6px 0 6px; vertical-align: middle; }
+        
+        .keterangan-rumus { text-align: left; background: rgba(15, 23, 42, 0.3); padding: 12px 20px; border-radius: 8px; font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-top: 10px; border-left: 3px solid var(--accent-color); }
 
-        /* Desain Opsi Kuis */
+        /* Kuis */
         .opsi-container { display: flex; flex-direction: column; gap: 14px; margin-top: 25px; }
-        .opsi-btn { 
-            background: rgba(30, 41, 59, 0.5); color: var(--text-light); border: 1px solid rgba(255, 255, 255, 0.1); 
-            text-align: left; padding: 18px; border-radius: 10px; cursor: pointer; font-size: 16px; 
-            transition: all 0.2s ease; 
-        }
-        .opsi-btn:hover { 
-            background: rgba(51, 65, 85, 0.6); border-color: var(--accent-color); 
-            transform: translateX(5px); box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+        .opsi-btn { background: rgba(30, 41, 59, 0.5); color: var(--text-light); border: 1px solid rgba(255, 255, 255, 0.1); text-align: left; padding: 18px; border-radius: 10px; cursor: pointer; font-size: 16px; transition: all 0.2s ease; }
+        .opsi-btn:hover { background: rgba(51, 65, 85, 0.6); border-color: var(--accent-color); transform: translateX(5px); }
+        
+        .tab-btn-group { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .tab-btn { background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); padding: 10px 20px; font-weight: bold; border-radius: 8px; width: auto; margin: 0; }
+        .tab-btn.active-tab { background: var(--accent-color); color: white; box-shadow: 0 0 10px var(--accent-glow); border-color: var(--accent-color); }
+        .lab-panel { display: none; }
+        .lab-panel.active-panel { display: block; }
     </style>
 </head>
 <body>
@@ -208,14 +157,13 @@
             </div>
             <div class="form-group">
                 <label>Token Akses Kelas:</label>
-                <input type="password" id="token" placeholder="Masukkan token (Petunjuk: statistika)">
+                <input type="password" id="token" placeholder="Masukkan token: statistika">
             </div>
             <button class="btn-accent" onclick="prosesLogin()">Otentikasi Masuk</button>
         </div>
     </div>
 
     <div id="appWrapper" class="app-wrapper">
-        
         <nav class="navbar-top">
             <div class="navbar-brand">📊 PORTAL STATISTIKA</div>
             <ul class="navbar-menu">
@@ -223,98 +171,69 @@
                 <li id="m-m1" onclick="navigasiKe('pagePumusatan', 'm-m1')">Ukuran Pemusatan</li>
                 <li id="m-m2" onclick="navigasiKe('pagePenyebaran', 'm-m2')">Ukuran Penyebaran</li>
                 <li id="m-lab" onclick="navigasiKe('pageLab', 'm-lab')">Laboratorium Data</li>
-                <li id="m-kuis" onclick="bukaKuisNav('m-kuis')">Kuis Evaluasi</li>
+                <li id="m-kuis" onclick="bukaKuisNav('m-kuis')">Kuis Evaluasi (20 Soal)</li>
                 <li id="m-dev" onclick="navigasiKe('pageDev', 'm-dev')">Pengembang</li>
             </ul>
             <div class="btn-logout-nav" onclick="keluarKelas()">Keluar</div>
         </nav>
 
         <div class="main-content">
-            
             <div class="status-bar">
-                <div style="color: var(--text-muted); font-weight: 500;">Modul Interaktif: Landasan Pengolahan Data</div>
+                <div style="color: var(--text-muted); font-weight: 500;">Modul Interaktif: Landasan Pengolahan Data Deskriptif</div>
                 <div style="font-weight: 700; color: #ffffff;" id="txtStatusNama">Mahasiswa: -</div>
             </div>
 
             <div id="pageDashboard" class="page-section active-section">
                 <div class="card">
                     <h2 style="margin-top: 0;">👋 Selamat Datang di Portal Virtual</h2>
-                    <p style="color: var(--text-muted); line-height: 1.7; font-size: 15px;">Platform kelas digital terintegrasi ini dikembangkan untuk mendampingi Anda memahami dasar pengumpulan, struktur jenis data, pengolahan, serta penarikan kesimpulan statistik amatan secara visual dan akurat.</p>
+                    <p style="color: var(--text-muted); line-height: 1.7; font-size: 15px;">Platform kelas digital terintegrasi ini dikembangkan untuk mendampingi Anda memahami cara pengumpulan, sifat-sifat data, pengolahan numerik data tunggal &amp; kelompok, serta penyajian grafik statistik secara mutakhir.</p>
                 </div>
 
                 <div class="card">
                     <h2 style="margin-top: 0; color: #38bdf8;">🧠 Pengantar 1: Statistika Deskriptif vs Inferensial</h2>
-                    <p style="line-height: 1.6; color: #cbd5e1;">Dalam duni perkuliahan matematika, statistika dibagi menjadi dua cabang berdasarkan tujuan analisisnya:</p>
+                    <p style="line-height: 1.6; color: #cbd5e1;">Dalam dunia analisis data, ilmu statistika dibagi menjadi dua pilar utama:</p>
                     <ul style="line-height: 1.8; color: #cbd5e1;">
-                        <li><b>Statistika Deskriptif:</b> Berfokus pada metode pengumpulan, pengurutan, meringkas, dan menyajikan data amatan secara informatif (menggunakan grafik, mean, kuartil, varians) tanpa melakukan penarikan kesimpulan umum.</li>
-                        <li><b>Statistika Inferensial:</b> Berfokus pada penarikan kesimpulan, pengujian hipotesis, perkiraan, dan estimasi parameter populasi berdasarkan hasil analisis kelompok data sampel.</li>
+                        <li><b>Statistika Deskriptif:</b> Metode pengolahan yang bertujuan meringkas, mengurutkan, dan menyajikan data amatan secara informatif (tabel, grafik, rata-rata, simpangan baku) terbatas pada sampel tersebut tanpa menarik generalisasi kelompok luar.</li>
+                        <li><b>Statistika Inferensial:</b> Metode pengujian hipotesis dan estimasi parameter yang bertujuan mengambil keputusan/kesimpulan tentang Populasi besar berdasarkan data sampel acak yang dianalisis.</li>
                     </ul>
-
-                    <h4 style="margin-bottom: 10px; margin-top: 25px;">📊 Tabel Perbedaan Karakteristik Utama</h4>
-                    <table class="table-stat" style="font-size: 14px;">
-                        <tr>
-                            <th>Faktor Pembeda</th>
-                            <th>Statistika Deskriptif</th>
-                            <th>Statistika Inferensial</th>
-                        </tr>
-                        <tr>
-                            <td><b>Tujuan Utama</b></td>
-                            <td>Menggambarkan karakteristik data kelompok sampel.</td>
-                            <td>Membuat generalisasi/kesimpulan tentang Populasi luas.</td>
-                        </tr>
-                        <tr>
-                            <td><b>Bentuk Output</b></td>
-                            <td>Tabel frekuensi, diagram batang/lingkaran, Mean, Varians.</td>
-                            <td>Nilai signifikansi (p-value), uji-t, ANOVA, regresi linear.</td>
-                        </tr>
-                        <tr>
-                            <td><b>Teori Peluang</b></td>
-                            <td>Tidak memerlukan teori probabilitas/peluang.</td>
-                            <td>Skat bergantung pada hukum peluang/sampling.</td>
-                        </tr>
-                    </table>
                 </div>
 
                 <div class="card">
                     <h2 style="margin-top: 0; color: #a855f7;">🎯 Pengantar 2: Memahami Populasi dan Sampel</h2>
-                    <p style="line-height: 1.6; color: #cbd5e1;">Sebelum mengolah data, Anda harus mengenali batasan objek amatan dalam penelitian:</p>
-                    
                     <div class="concept-grid">
                         <div class="concept-box">
                             <h3 style="color: var(--accent-color); margin-top: 0;">👥 Populasi</h3>
-                            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;"><b>Populasi</b> adalah keseluruhan objek, totalitas kelompok individu, atau wilayah generalisasi yang memiliki karakteristik tertentu yang ingin diteliti secara utuh.</p>
+                            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;"><b>Populasi</b> adalah keseluruhan objek, wilayah, kelompok, atau individu dengan karakteristik tertentu yang ingin diteliti.</p>
                             <div class="pop-circle">Semua Mahasiswa di Kampus
                                 <div style="position: absolute; bottom: 10px; right: 10px;" class="sam-circle">Sampel</div>
                             </div>
                         </div>
                         <div class="concept-box">
                             <h3 style="color: var(--success-color); margin-top: 0;">🧪 Sampel</h3>
-                            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;"><b>Sampel</b> adalah sebagian kecil atau himpunan bagian representatif yang diambil langsung dari populasi untuk mewakili karakteristik seluruh kelompok besar tersebut.</p>
+                            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;"><b>Sampel</b> adalah sebagian kecil atau himpunan bagian representatif yang diambil langsung dari populasi untuk mewakili kelompok induknya.</p>
                             <div style="display: flex; justify-content: center; align-items: center; height: 140px;">
-                                <div class="sam-circle" style="width: 100%; height: 100px; border-radius: 12px; font-weight: bold; color: white;">20 Mahasiswa yang Diwawancarai</div>
+                                <div class="sam-circle" style="width: 100%; height: 100px; border-radius: 12px; font-weight: bold; color: white;">20 Mahasiswa Sampel</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h2 style="margin-top: 0; color: #10b981;">📏 Pengantar 3: Hierarki Jenis &amp; Skala Pengukuran Data</h2>
-                    <p style="line-height: 1.6; color: #cbd5e1;">Sebelum menentukan rumus statistika, peneliti harus memetakan bentuk datanya berdasarkan pohon hierarki berikut:</p>
+                    <h2 style="margin-top: 0; color: #10b981;">📏 Pengantar 3: Sifat, Sifat Angka, &amp; Skala Pengukuran Data</h2>
                     
-                    <h3>A. Klasifikasi Sifat: Kualitatif vs Kuantitatif</h3>
-                    <ul style="line-height: 1.8; color: #cbd5e1; margin-bottom: 20px;">
-                        <li><b>Data Kualitatif (Kategorik):</b> Data yang berbentuk deskripsi kata, label, atau atribut non-numerik yang tidak dapat dihitung secara matematis. Contoh: Suku bangsa, warna rambut, jenis pekerjaan, tingkat kepuasan.</li>
-                        <li><b>Data Kuantitatif (Numerik):</b> Data yang berbentuk angka, nilai nyata kuantitatif, dan bernilai matematis. Contoh: Skor ujian, berat badan, jumlah anak, suhu udara.</li>
+                    <h3>A. Sifat Variabel: Kualitatif vs Kuantitatif</h3>
+                    <ul style="line-height: 1.8; color: #cbd5e1;">
+                        <li><b>Data Kualitatif (Kategorik):</b> Data berupa deskripsi kata, label, atau atribut non-numerik yang tidak dapat dihitung matematis secara langsung. Contoh: Jenis Kelamin, Suku Bangsa, Status Pernikahan.</li>
+                        <li><b>Data Kuantitatif (Numerik):</b> Data berupa nilai kuantitatif angka nyata yang dapat dioperasikan secara matematis. Contoh: Tinggi Badan, Jumlah Pendapatan, Usia.</li>
                     </ul>
 
-                    <h3>B. Klasifikasi Angka Kuantitatif: Diskrit vs Kontinu</h3>
-                    <p style="color: #cbd5e1;">Data kuantitatif (numerik) dibagi lagi menjadi dua karakter angka amatan:</p>
-                    <ul style="line-height: 1.8; color: #cbd5e1; margin-bottom: 20px;">
-                        <li><b>Data Diskrit:</b> Data hasil dari aktivitas <b>membilang/menghitung</b>, berupa bilangan bulat utuh yang pasti, dan tidak berbentuk pecahan desimal. Contoh: Jumlah mobil di parkiran (5 mobil, tidak mungkin 5.5), jumlah anak, jumlah uang kertas.</li>
-                        <li><b>Data Kontinu:</b> Data hasil dari aktivitas <b>mengukur</b>, nilainya berada dalam rentang kontinu tertentu, dan bisa berbentuk pecahan desimal/komplit. Contoh: Tinggi badan (165.4 cm), berat badan, waktu reaksi detik (3.24 detik), suhu tubuh.</li>
+                    <h3>B. Bentuk Angka Kuantitatif: Diskrit vs Kontinu</h3>
+                    <ul style="line-height: 1.8; color: #cbd5e1;">
+                        <li><b>Data Diskrit:</b> Hasil dari aktivitas <b>membilang/menghitung</b>, menghasilkan bilangan bulat positif utuh yang pasti. Contoh: Jumlah anak (3 anak), Jumlah mobil di parkiran (15 mobil).</li>
+                        <li><b>Data Kontinu:</b> Hasil dari aktivitas <b>mengukur</b>, nilainya berada dalam rentang kontinu dan bisa berbentuk pecahan desimal komplit. Contoh: Berat badan (54.75 kg), Kecepatan lari (12.4 detik).</li>
                     </ul>
 
-                    <h3>C. Empat Skala Pengukuran Karakter Data (Skala NOIR)</h3>
+                    <h3>C. Skala Pengukuran Karakter Data (Skala NOIR)</h3>
                     <table class="table-stat" style="font-size: 14px;">
                         <tr>
                             <th>Skala Data</th>
@@ -325,85 +244,114 @@
                         <tr>
                             <td><b>1. Nominal</b></td>
                             <td>Kualitatif</td>
-                            <td>Hanya berupa label/kategori klasifikasi nama tanpa ada urutan/tingkatan nilai tertentu.</td>
-                            <td>Jenis Kelamin, Agama, Warna Mata, Asal Kota.</td>
+                            <td>Hanya berupa label klasifikasi nama tanpa ada urutan/tingkatan tertentu.</td>
+                            <td>Agama, Warna Mata, Jurusan Kuliah.</td>
                         </tr>
                         <tr>
                             <td><b>2. Ordinal</b></td>
                             <td>Kualitatif</td>
-                            <td>Berupa kategori yang sudah memiliki urutan, peringkat, atau tingkatan bertingkat yang jelas. Jarak tidak sama.</td>
-                            <td>Peringkat Kelas (Juara 1, 2, 3), Kepangkatan Militer, Tingkat Pendidikan.</td>
+                            <td>Memiliki label kategori yang sudah membentuk tingkatan/peringkat urutan yang jelas. Jarak tidak sama.</td>
+                            <td>Juara Kelas (1, 2, 3), Kepangkatan, Jenjang Pendidikan.</td>
                         </tr>
                         <tr>
                             <td><b>3. Interval</b></td>
                             <td>Kuantitatif</td>
-                            <td>Data angka kuantitatif berjarak sama, memiliki urutan, tetapi <b>tidak memiliki nilai nol mutlak</b> (nol memiliki arti).</td>
-                            <td>Suhu Udara (0&deg;C bukan berarti tidak ada suhu), Skor IQ, Tahun Masehi.</td>
+                            <td>Angka kuantitatif berjarak sama, memiliki urutan, tetapi <b>tidak memiliki nilai nol mutlak</b> (0 tetap ada nilainya).</td>
+                            <td>Suhu Udara (0 derajat Celsius), Skor IQ, Tahun Masehi.</td>
                         </tr>
                         <tr>
                             <td><b>4. Rasio</b></td>
                             <td>Kuantitatif</td>
-                            <td>Tingkatan tertinggi. Data kuantitatif berjarak sama, dan <b>memiliki nilai nol mutlak</b> (nol berarti kosong/habis).</td>
-                            <td>Berat Badan (0 kg berarti tidak ada bobot), Jarak Rumah, Pendapatan Bulanan.</td>
+                            <td>Tingkatan tertinggi. Angka berjarak sama, dan <b>memiliki nilai nol mutlak</b> (0 berarti kosong/habis).</td>
+                            <td>Tinggi Badan (0 cm berarti tidak ada tinggi), Pendapatan Bulanan, Jarak Rumah.</td>
                         </tr>
                     </table>
-                </div>
-
-                <div class="card">
-                    <h2 style="margin-top: 0;">📋 Petunjuk Penggunaan Modul</h2>
-                    <ol style="line-height: 2.2; font-size: 15px; color: #e2e8f0;">
-                        <li>Gunakan menu klik pada <b>bar navigasi atas</b> untuk beralih antar segmen modul halaman.</li>
-                        <li>Pelajari ringkasan materi konseptual secara terstruktur pada modul <b>Ukuran Pemusatan</b> dan <b>Ukuran Penyebaran</b>.</li>
-                        <li>Gunakan modul <b>Laboratorium Data</b> untuk memvalidasi pengerjaan hitungan manual tugas perkuliahan Anda secara otomatis sekaligus menggambar grafik statistik mini yang rapi.</li>
-                        <li>Kerjakan paket <b>Kuis Evaluasi Lengkap (20 Soal)</b> setelah selesai membaca seluruh materi untuk menguji kompetensi Anda.</li>
-                    </ol>
                 </div>
             </div>
 
             <div id="pagePumusatan" class="page-section">
                 <div class="card">
-                    <h2>📖 Ukuran Pemusatan Data (Ukuran Tengah)</h2>
-                    <p style="color: var(--text-muted);">Ukuran pemusatan digunakan untuk mendeteksi kecenderungan letak titik nilai pusat dari serangkaian kelompok data sampel.</p>
+                    <h2>📖 Ukuran Pemusatan Data (Data Tunggal &amp; Kelompok)</h2>
+                    <p style="color: var(--text-muted);">Ukuran pemusatan digunakan untuk menganalisis kecenderungan letak nilai pusat dari sekumpulan data amatan.</p>
                     
-                    <h3>1. Mean (Rata-rata Hitung)</h3>
-                    <p>Jumlah total nilai seluruh data amatan dibagi dengan banyaknya ukuran kuantitas sampel data (n):</p>
+                    <h3 style="color: #38bdf8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">1. Mean (Rata-rata Hitung)</h3>
+                    <p><b>A. Data Tunggal:</b> Jumlah total nilai seluruh variabel dibagi ukuran sampel (n):</p>
                     <div class="rumus-box">
-                        Mean (x̄) = 
-                        <div class="fraction">
-                            <span class="numerator">x<sub>1</sub> + x<sub>2</sub> + ... + x<sub>n</sub></span>
-                            <span class="denominator">n</span>
-                        </div>
-                        = 
+                        x̄ = 
                         <div class="fraction">
                             <span class="numerator">&Sigma;x<sub>i</sub></span>
                             <span class="denominator">n</span>
                         </div>
                     </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>x̄</b> : Rata-rata hitung data tunggal<br>
+                        • <b>&Sigma;x<sub>i</sub></b> : Jumlah total seluruh nilai data (x<sub>1</sub> + x<sub>2</sub> + ... + x<sub>n</sub>)<br>
+                        • <b>n</b> : Ukuran sampel atau banyaknya data amatan
+                    </div>
 
-                    <h3>2. Median (Nilai Tengah Data Tunggal)</h3>
-                    <p>Nilai tengah dari barisan data pengamatan setelah diurutkan terstruktur dari terkecil ke terbesar. Nilai letak posisi indeks tengah dihitung dengan rumus: <b>k = (n + 1) / 2</b></p>
-                    <ul>
-                        <li style="margin-bottom: 8px;">Jika sampel berjumlah <b>Ganjil</b>: Median = X<sub>k</sub></li>
-                        <li>Jika sampel berjumlah <b>Genap</b>: Median = (X<sub>k</sub> + X<sub>k+1</sub>) / 2  (di mana nilai k = n / 2)</li>
-                    </ul>
-
-                    <h3>3. Kuartil (Q<sub>1</sub>, Q<sub>2</sub>, Q<sub>3</sub>)</h3>
-                    <p>Nilai pembagi yang mengelompokkan barisan data terurut menjadi 4 bagian sama besar. Letak urutan posisi indeks kuartil ke-i ditentukan dengan:</p>
+                    <p style="margin-top: 20px;"><b>B. Data Kelompok:</b> Jumlah hasil perkalian frekuensi kelas dengan titik tengah kelas dibagi total frekuensi:</p>
                     <div class="rumus-box">
-                        Posisi Q<sub>i</sub> = 
+                        x̄ = 
                         <div class="fraction">
-                            <span class="numerator">i * (n + 1)</span>
-                            <span class="denominator">4</span>
+                            <span class="numerator">&Sigma;(f<sub>i</sub> * x<sub>i</sub>)</span>
+                            <span class="denominator">&Sigma;f<sub>i</sub></span>
                         </div>
                     </div>
-                    <p>Apabila urutan posisi jatuh pada nilai pecahan desimal, maka dihitung menggunakan pendekatan <b>Metode Interpolasi Linear</b>:</p>
-                    <div class="rumus-box">
-                        X<sub>qi</sub> = X<sub>a</sub> + h * (X<sub>b</sub> - X<sub>a</sub>)
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>x̄</b> : Rata-rata hitung data kelompok<br>
+                        • <b>f<sub>i</sub></b> : Frekuensi pada kelas interval ke-i<br>
+                        • <b>x<sub>i</sub></b> : Nilai titik tengah kelas interval ke-i, dihitung dengan rumus: <code>(Batas Bawah + Batas Atas) / 2</code><br>
+                        • <b>&Sigma;f<sub>i</sub></b> : Total kuantitas frekuensi seluruh data kelompok (Sama dengan total nilai sampel <b>n</b>)
                     </div>
-                    <small style="color: var(--text-muted);">Keterangan: X<sub>a</sub> = nilai data sebelum posisi, X<sub>b</sub> = nilai data setelah posisi, h = sisa nilai pecahan desimal dari posisi letak kuartil.</small>
 
-                    <h3>4. Modus Data</h3>
-                    <p>Unsur variasi nilai amatan yang paling dominan muncul atau mempunyai bobot nilai frekuensi terbesar di dalam kelompok sampel data.</p>
+                    <h3 style="color: #38bdf8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; margin-top:30px;">2. Median (Nilai Tengah)</h3>
+                    <p><b>A. Data Tunggal:</b> Diambil dari data urutan ke-k, di mana nilai letak posisi indeks tengah dihitung dengan rumus: <b>k = (n + 1) / 2</b></p>
+                    
+                    <p style="margin-top: 20px;"><b>B. Data Kelompok:</b> Diambil dari letak kelas median (posisi n/2), lalu dihitung via rumus:</p>
+                    <div class="rumus-box">
+                        Median = Tb + [ 
+                        <div class="fraction">
+                            <span class="numerator">(n / 2) - Fk</span>
+                            <span class="denominator">f<sub>m</sub></span>
+                        </div> ] * p
+                    </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>Tb</b> : Tepi bawah kelas median (Batas Bawah kelas median dikurangi 0.5)<br>
+                        • <b>n</b> : Total akumulasi frekuensi seluruh data kelompok<br>
+                        • <b>Fk</b> : Frekuensi kumulatif total <i>sebelum</i> memasuki kelas median<br>
+                        • <b>f<sub>m</sub></b> : Frekuensi asli yang dimiliki oleh kelas median<br>
+                        • <b>p</b> : Panjang atau rentang interval kelas kelompok
+                    </div>
+
+                    <h3 style="color: #38bdf8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; margin-top:30px;">3. Modus &amp; Klasifikasi Kemunculan</h3>
+                    <p><b>A. Data Tunggal:</b> Diambil langsung dari nilai variabel dengan frekuensi kemunculan tertinggi.</p>
+                    
+                    <p style="margin-top: 20px;"><b>B. Data Kelompok:</b> Diambil dari kelas interval dengan frekuensi terbesar, lalu dihitung menggunakan rumus:</p>
+                    <div class="rumus-box">
+                        Modus = Tb + [ 
+                        <div class="fraction">
+                            <span class="numerator">d<sub>1</sub></span>
+                            <span class="numerator">d<sub>1</sub> + d<sub>2</sub></span>
+                        </div> ] * p
+                    </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>Tb</b> : Tepi bawah kelas modus (Batas Bawah kelas dengan frekuensi terbesar dikurangi 0.5)<br>
+                        • <b>d<sub>1</sub></b> : Selisih frekuensi kelas modus dengan frekuensi kelas interval tepat <i>sebelumnya</i><br>
+                        • <b>d<sub>2</sub></b> : Selisih frekuensi kelas modus dengan frekuensi kelas interval tepat <i>sesudahnya</i><br>
+                        • <b>p</b> : Panjang atau rentang interval kelas kelompok
+                    </div>
+
+                    <h4>📌 Klasifikasi Jenis Data Berdasarkan Jumlah Modus:</h4>
+                    <ul style="line-height: 2; color: #cbd5e1;">
+                        <li><b>Amodus:</b> Kelompok data yang tidak memiliki modus sama sekali karena semua nilai muncul sama banyak.</li>
+                        <li><b>Unimodus:</b> Kelompok data yang memiliki tepat satu nilai modus tertinggi.</li>
+                        <li><b>Bimodus:</b> Kelompok data yang memiliki dua nilai modus berbeda dengan frekuensi puncak yang sama.</li>
+                        <li><b>Multimodus:</b> Kelompok data yang memiliki lebih dari dua nilai modus berbeda.</li>
+                    </ul>
                 </div>
             </div>
 
@@ -413,7 +361,7 @@
                     <p style="color: var(--text-muted);">Ukuran penyebaran digunakan untuk melihat sejauh mana keragaman variasi data menyimpang dari nilai pusatnya.</p>
                     
                     <h3>1. Varians Sampel (s<sup>2</sup>)</h3>
-                    <p>Ukuran keragaman sampel yang dihitung melalui pemanfaatan formula praktis aljabar kuadrat langsung:</p>
+                    <p>Ukuran keragaman sampel kuadrat yang dihitung menggunakan formula hitung praktis:</p>
                     <div class="rumus-box">
                         s<sup>2</sup> = 
                         <div class="fraction">
@@ -426,78 +374,117 @@
                             <span class="denominator">n</span>
                         </div> ]
                     </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>s<sup>2</sup></b> : Varians (ragam) tingkat sampel<br>
+                        • <b>n</b> : Ukuran sampel atau total banyaknya data amatan<br>
+                        • <b>&Sigma;x<sub>i</sub><sup>2</sup></b> : Jumlah dari masing-masing nilai data yang telah dikuadratkan terlebih dahulu (x<sub>1</sub><sup>2</sup> + x<sub>2</sub><sup>2</sup> + ...)<br>
+                        • <b>(&Sigma;x<sub>i</sub>)<sup>2</sup></b> : Kuadrat dari total penjumlahan seluruh nilai data amatan
+                    </div>
 
                     <h3>2. Standar Deviasi Sampel / Simpangan Baku (s)</h3>
-                    <p>Dihitung dengan menarik nilai operasi akar pangkat dua dari hasil akumulasi nilai parameter varians sampel:</p>
+                    <p>Diperoleh dengan menarik akar pangkat dua dari hasil akumulasi nilai parameter varians sampel:</p>
                     <div class="rumus-box">
                         s = <span class="akar">&radic;</span><span class="garis-akar">s<sup>2</sup></span>
                     </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>s</b> : Standar deviasi (simpangan baku) tingkat sampel<br>
+                        • <b>s<sup>2</sup></b> : Hasil nilai perhitungan varians sampel
+                    </div>
 
-                    <h3>3. Rentang &amp; Rentang Antar Kuartil</h3>
-                    <ul>
-                        <li style="margin-bottom: 8px;"><b>Rentang (Range):</b> Nilai Observasi Terbesar - Nilai Observasi Terkecil</li>
-                        <li><b>Rentang Antar Kuartil (Jangkauan IQR):</b> Q<sub>3</sub> - Q<sub>1</sub></li>
-                    </ul>
+                    <h3>3. Rentang (Range)</h3>
+                    <div class="rumus-box">Rentang = Data Terbesar - Data Terkecil</div>
                 </div>
             </div>
 
             <div id="pageLab" class="page-section">
                 <div class="card">
                     <h2>🛠️ Laboratorium Pengolahan Data &amp; Engine Grafik</h2>
-                    <p style="color: var(--text-muted);">Klik tombol sampel untuk memuat data praktikum secara cepat, atau ketik data angka acak Anda sendiri dipisahkan koma (,):</p>
                     
-                    <div style="margin-bottom:20px;">
-                        <button class="btn-accent btn-sample" onclick="muatDataLatihan('bayi')">👶 Data Berat Bayi</button>
-                        <button class="btn-accent btn-sample" onclick="muatDataLatihan('eksperimen')">🧠 Data Waktu Reaksi</button>
+                    <div class="tab-btn-group">
+                        <button id="btnTabTunggal" class="tab-btn active-tab" onclick="gantiPanelLab('tunggal')">Mode Data Tunggal</button>
+                        <button id="btnTabKelompok" class="tab-btn" onclick="gantiPanelLab('kelompok')">Mode Data Kelompok</button>
                     </div>
 
-                    <input type="text" id="inputLabData" value="5, 3, 4, 8, 5, 10, 6, 8">
-                    <button class="btn-accent" style="margin-top:15px; box-shadow: 0 4px 20px var(--accent-glow);" onclick="prosesEngineKalkulatorDanGrafik()">Jalankan Komputasi &amp; Gambar Grafik</button>
+                    <div id="panelLabTunggal" class="lab-panel active-panel">
+                        <p style="color: var(--text-muted);">Masukkan deretan angka acak Anda dipisahkan koma (,):</p>
+                        <div style="margin-bottom:15px;">
+                            <button class="btn-sample" onclick="muatSampelTunggal('bayi')">👶 Kasus Berat Bayi</button>
+                            <button class="btn-sample" onclick="muatSampelTunggal('reaksi')">🧠 Kasus Waktu Reaksi</button>
+                            <button class="btn-sample" onclick="muatSampelTunggal('kuartil')">📊 Kasus 8 Data Kuartil</button>
+                        </div>
+                        <input type="text" id="inputLabTunggal" value="5, 3, 4, 8, 5, 10, 6, 8">
+                        <button class="btn-accent" style="margin-top:15px;" onclick="hitungLabTunggal()">Hitung Data Tunggal &amp; Render Grafik</button>
+                    </div>
+
+                    <div id="panelLabKelompok" class="lab-panel">
+                        <p style="color: var(--text-muted);">Masukkan data distribusi kelompok dengan format: <b>BatasBawah-BatasAtas, Frekuensi</b> (Satu baris untuk satu kelas interval):</p>
+                        <div style="margin-bottom:15px;">
+                            <button class="btn-sample" onclick="muatSampelKelompok('nilai')">📋 Kasus Nilai Ujian</button>
+                        </div>
+                        <textarea id="inputLabKelompok" rows="5" placeholder="Contoh:&#10;31-40, 4&#10;41-50, 6&#10;51-60, 10"></textarea>
+                        <button class="btn-accent" style="margin-top:15px;" onclick="hitungLabKelompok()">Hitung Data Kelompok &amp; Render Grafik</button>
+                    </div>
                 </div>
 
                 <div id="boxHasilLab" class="card" style="display:none;">
-                    <h3 style="color: #a855f7; margin-top: 0;">📊 Hasil Analisis Output Komputasi:</h3>
-                    <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
-                    <p><b>Data Urut Terstruktur:</b> [ <span id="labUrut" style="font-weight: 600; color: #a855f7;">-</span> ] (Banyak Sampel n = <span id="labN">0</span>)</p>
+                    <h3 style="color: #a855f7; margin-top:0;">📊 Hasil Analisis Output Praktikum Virtual:</h3>
+                    <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin-bottom:20px;">
                     
-                    <table class="table-stat">
-                        <tr>
-                            <th>Indikator Parameter</th>
-                            <th>Hasil Nilai Akhir</th>
-                            <th>Indikator Parameter</th>
-                            <th>Hasil Nilai Akhir</th>
-                        </tr>
-                        <tr>
-                            <td><b>Mean (Rata-rata)</b></td>
-                            <td id="labMean" style="font-weight:700; color:#38bdf8;">-</td>
-                            <td><b>Varians Sampel (s<sup>2</sup>)</b></td>
-                            <td id="labVarians" style="font-weight:700;">-</td>
-                        </tr>
-                        <tr>
-                            <td><b>Median (Q<sub>2</sub>)</b></td>
-                            <td id="labMedian" style="font-weight:700; color:#38bdf8;">-</td>
-                            <td><b>Standar Deviasi (s)</b></td>
-                            <td id="labSD" style="font-weight:700;">-</td>
-                        </tr>
-                        <tr>
-                            <td><b>Kuartil Bawah (Q<sub>1</sub>)</b></td>
-                            <td id="labQ1" style="font-weight:700;">-</td>
-                            <td><b>Rentang (Range)</b></td>
-                            <td id="labRentang" style="font-weight:700;">-</td>
-                        </tr>
-                        <tr>
-                            <td><b>Kuartil Atas (Q<sub>3</sub>)</b></td>
-                            <td id="labQ3" style="font-weight:700;">-</td>
-                            <td><b>Rentang Antar Kuartil</b></td>
-                            <td id="labRAK" style="font-weight:700;">-</td>
-                        </tr>
-                        <tr>
-                            <td><b>Modus Data</b></td>
-                            <td id="labModus" colspan="3" style="font-weight:700; color:var(--success-color);">-</td>
-                        </tr>
-                    </table>
+                    <div id="displayHasilAngka"></div>
 
-                    <h4>📋 Tabel Bantu Komputasi Nilai Kuadrat (&Sigma;x<sub>i</sub><sup>2</sup>)</h4>
+                    <div id="panelKomparasiMetode" style="display:none;" class="chart-grid">
+                        <div class="chart-box" style="height:auto;">
+                            <h4 style="margin-top:0; color:var(--accent-color);">📐 Perbandingan Hasil Nilai Kuartil</h4>
+                            <table class="table-stat" style="font-size:13px; margin:0;">
+                                <tr>
+                                    <th>Metode</th>
+                                    <th>Q<sub>1</sub></th>
+                                    <th>Q<sub>2</sub> (Med)</th>
+                                    <th>Q<sub>3</sub></th>
+                                    <th>IQR</th>
+                                </tr>
+                                <tr>
+                                    <td><b>I. Belah Dua</b></td>
+                                    <td id="m1-q1">-</td>
+                                    <td id="m1-q2">-</td>
+                                    <td id="m1-q3">-</td>
+                                    <td id="m1-rak">-</td>
+                                </tr>
+                                <tr>
+                                    <td><b>II. Interpolasi</b></td>
+                                    <td id="m2-q1">-</td>
+                                    <td id="m2-q2">-</td>
+                                    <td id="m2-q3">-</td>
+                                    <td id="m2-rak">-</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="chart-box" style="height:auto;">
+                            <h4 style="margin-top:0; color:var(--accent-color);">📈 Perbandingan Ukuran Variasi</h4>
+                            <table class="table-stat" style="font-size:13px; margin:0;">
+                                <tr>
+                                    <th>Metode / Pendekatan</th>
+                                    <th>Varians (s<sup>2</sup>)</th>
+                                    <th>Standar Deviasi (s)</th>
+                                </tr>
+                                <tr>
+                                    <td><b>I. Rumus Definisi</b></td>
+                                    <td id="v1-var">-</td>
+                                    <td id="v1-sd">-</td>
+                                </tr>
+                                <tr>
+                                    <td><b>II. Rumus Hitung Praktis</b></td>
+                                    <td id="v2-var">-</td>
+                                    <td id="v2-sd">-</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h4 id="judulTabelBantu" style="margin-top:20px;">📋 Tabel Bantu Komputasi</h4>
                     <div id="wrapperTabelBantu"></div>
 
                     <div class="chart-grid">
@@ -513,9 +500,9 @@
 
             <div id="pageKuis" class="page-section">
                 <div class="card">
-                    <h2>📝 Lembar Kuis Evaluasi Mahasiswa (20 Soal)</h2>
+                    <h2>📝 Lembar Kuis Evaluasi Mahasiswa (20 Soal Kompetensi)</h2>
                     <div id="boxKontenSoal">
-                        <h3 id="txtPertanyaan" style="text-align:left; background: rgba(15,23,42,0.4); padding:20px; border-radius:10px; border-left:4px solid var(--accent-color); font-size: 18px; margin-top: 0; line-height: 1.6;">Memuat pertanyaan ujian...</h3>
+                        <h3 id="txtPertanyaan" style="text-align:left; background: rgba(15,23,42,0.4); padding:20px; border-radius:10px; border-left:4px solid var(--accent-color); font-size: 18px; margin-top:0; line-height:1.6;">Memuat pertanyaan ujian...</h3>
                         <div class="opsi-container" id="boxDaftarOpsi"></div>
                     </div>
                 </div>
@@ -524,7 +511,6 @@
             <div id="pageSkor" class="page-section">
                 <div class="card" style="text-align:center;">
                     <h2>🏆 Rekap Nilai Hasil Evaluasi</h2>
-                    <p style="color: var(--text-muted);">Nilai mutu kuantitatif akhir kelulusan kelas virtual statistika deskriptif Anda:</p>
                     <div style="font-size:80px; font-weight:800; color:var(--success-color); margin:20px 0; text-shadow: 0 0 20px var(--success-glow);" id="txtNilaiFinal">0</div>
                     <p id="txtEvaluasiMutu" style="font-weight:700; font-size:18px; color:#e2e8f0;"></p>
                     <button class="btn-accent" style="max-width:250px; margin:25px auto 0;" onclick="navigasiKe('pageDashboard','m-dash')">Kembali ke Dashboard</button>
@@ -535,9 +521,8 @@
                 <div class="card" style="text-align:center;">
                     <h2>👥 Tim Pengembang Sistem Portal</h2>
                     <div style="font-size:64px; margin:20px 0;">🎓</div>
-                    <h3 style="margin-bottom:5px;">Program Studi Pendidikan Matematika</h3>
+                    <h3>Program Studi Pendidikan Matematika</h3>
                     <p style="color: var(--text-muted); margin-bottom: 25px;">Aplikasi Portal Statistika Deskriptif Virtual Terintegrasi Elemen Multimedia.</p>
-                    <p style="color: #6366f1; font-weight: 700; font-size:14px; letter-spacing: 0.5px;">Jangan lupa selalu berdoa sebelum dan sesudah belajar.</p>
                 </div>
             </div>
 
@@ -551,50 +536,22 @@
         let referensiBarChart = null;
         let referensiPieChart = null;
 
-        function muatDataLatihan(tipe) {
-            let inputEl = document.getElementById("inputLabData");
-            if(tipe === 'bayi') inputEl.value = "3.28, 2.56, 4.20, 3.04, 3.12";
-            if(tipe === 'eksperimen') inputEl.value = "4, 2, 3, 3, 6, 3";
-            prosesEngineKalkulatorDanGrafik();
-        }
-
-        // AKUMULASI SOAL: TOTAL 20 SOAL YANG DISINKRONKAN DENGAN STRUKTUR TEORI POHON DATA BARU
-        const kumpulanSoal = [
-            // [Materi: Pemusatan & Penyebaran Data - Soal 1-10]
-            { q: "Diberikan data nilai praktikum: 5, 6, 7, 8, 9. Hitunglah nilai Mean (rata-rata) data tersebut!", a: ["6", "6.5", "7", "7.5"], correct: 2 },
-            { q: "Berapakah nilai letak Median dari sekumpulan data acak berikut: 3, 8, 6, 4, 7?", a: ["4", "6", "7", "5"], correct: 1 },
-            { q: "Tentukan nilai Median jika variabel data genap terstruktur sebagai berikut: 2, 4, 6, 8.", a: ["4", "5", "6", "4.5"], correct: 1 },
-            { q: "Berdasarkan sampel data nomor sepatu: 38, 39, 40, 39, 41, 39, 38. Modus sampel tersebut adalah...", a: ["38", "39", "40", "41"], correct: 1 },
-            { q: "Jika akumulasi nilai total dari 5 data amatan adalah 40, berapakah nilai rata-rata hitungnya?", a: ["6", "7", "8", "9"], correct: 2 },
-            { q: "Berapakah nilai Rentang (Range) dari kelompok data tunggal berikut: 12, 5, 22, 17, 9, 14?", a: ["13", "17", "9", "22"], correct: 1 },
-            { q: "Jika nilai Q1 = 14.5 dan Q3 = 21.0, berapakah nilai Rentang Antar Kuartil (IQR) data tersebut?", a: ["6.5", "7.5", "5.5", "8.0"], correct: 0 },
-            { q: "Data pengamatan homogen terukur: 7, 7, 7, 7, 7. Manakah pernyataan yang benar mengenai nilai varians data tersebut?", a: ["Varians bernilai positif", "Varians bernilai negatif", "Varians bernilai nol", "Varians tidak terdefinisi"], correct: 2 },
-            { q: "Langkah pertama yang wajib dilakukan sebelum mencari nilai Median dan Kuartil data acak tunggal adalah...", a: ["Menghitung rata-rata", "Mengkuadratkan data", "Mengurutkan data dari terkecil ke terbesar", "Membagi data dengan dua"], correct: 2 },
-            { q: "Nilai parameter Standar Deviasi sampel diperoleh melalui operasi matematika berupa...", a: ["Kuadrat dari nilai varians", "Akar kuadrat dari nilai varians", "Pembagian varians dengan banyak data", "Perkalian varians dengan rata-rata"], correct: 1 },
-            
-            // [Materi: Deskriptif vs Inferensial & Populasi vs Sampel - Soal 11-15]
-            { q: "Cabang ilmu statistika yang bertujuan meringkas, menyajikan, dan mendeskripsikan karakteristik data sampel tanpa menarik kesimpulan populasi disebut...", a: ["Statistika Inferensial", "Statistika Deskriptif", "Statistika Teoretis", "Statistika Non-Parametrik"], correct: 1 },
-            { q: "Manakah di antara pilihan berikut yang merupakan produk keluaran (output) utama statistika deskriptif?", a: ["Nilai p-value uji hipotesis", "Koefisien regresi linear", "Tabel frekuensi dan grafik Mean", "Hasil pengujian ANOVA"], correct: 2 },
-            { q: "Keseluruhan totalitas unit, kelompok, atau individu objek yang ingin diteliti karakteristiknya dalam pengamatan ilmiah dinamakan...", a: ["Sampel acak", "Populasi", "Variabel", "Parameter amatan"], correct: 1 },
-            { q: "Himpunan bagian representatif yang diambil dari kelompok besar untuk mewakili kondisi populasi sesungguhnya dinamakan...", a: ["Sampel", "Kluster data", "Eksperimen", "Varians kuadrat"], correct: 0 },
-            { q: "Seorang peneliti mengambil 50 mahasiswa dari total 2000 mahasiswa di suatu fakultas. Angka 2000 menggambarkan nilai dari...", a: ["Ukuran Sampel", "Ukuran Populasi", "Variansi Kuantitatif", "Skala Rasio"], correct: 1 },
-            
-            // [Materi Baru: Kualitatif vs Kuantitatif & Diskrit vs Kontinu & Skala NOIR - Soal 16-20]
-            { q: "Data yang berbentuk deskripsi kata, label, atau atribut non-numerik (seperti Suku Bangsa, Warna Mata, Jenis Pekerjaan) diklasifikasikan sebagai data...", a: ["Kuantitatif", "Diskrit", "Kualitatif", "Kontinu"], correct: 2 },
-            { q: "Data numerik yang diperoleh dari aktivitas 'membilang atau menghitung' dan selalu menghasilkan bilangan bulat utuh tanpa pecahan (contoh: Jumlah Anak, Jumlah Mobil) disebut data...", a: ["Kualitatif", "Kontinu", "Diskrit", "Ordinal"], correct: 2 },
-            { q: "Data hasil aktivitas 'mengukur' yang nilainya berada dalam rentang kontinu dan bisa berbentuk pecahan desimal (contoh: Tinggi Badan 165.4 cm, Waktu Reaksi 3.2 detik) adalah...", a: ["Data Diskrit", "Data Kontinu", "Data Nominal", "Data Kualitatif"], correct: 1 },
-            { q: "Variabel 'Tingkat Pendidikan Terakhir (SD, SMP, SMA, S1)' memiliki karakteristik urutan tingkatan yang jelas, namun jarak antar peringkat tidak sama. Data ini berada pada skala...", a: ["Nominal", "Rasio", "Interval", "Ordinal"], correct: 3 },
-            { q: "Manakah pernyataan di bawah ini yang paling tepat menggambarkan karakteristik utama skala Rasio dalam statistika?", a: ["Hanya berupa kategori kata", "Memiliki nilai letak urutan peringkat saja", "Nol tidak bersifat mutlak", "Memiliki nilai nol mutlak (nilai 0 berarti objek tidak ada/kosong)"], correct: 3 }
-        ];
-
+        // FIXED SOLUSI JAVASCRIPT UTAMA (DI-ANGKAT): Deklarasi fungsi navigasi diletakkan paling atas agar bisa dibaca browser saat proses login dipicu
         function navigasiKe(sectionId, menuId) {
-            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-section'));
-            document.querySelectorAll('.navbar-menu li').forEach(m => m.classList.remove('active-menu'));
+            document.querySelectorAll('.page-section').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+            document.querySelectorAll('.navbar-menu li').forEach(m => {
+                m.classList.remove('active-menu');
+            });
             
             document.getElementById(sectionId).classList.add('active-section');
-            if(menuId) document.getElementById(menuId).classList.add('active-menu');
+            if(menuId) {
+                document.getElementById(menuId).classList.add('active-menu');
+            }
         }
 
+        // FIXED SINKRONISASI ELEMEN: Mengubah target ID dari txtStatusNama menjadi navUserStatus agar tidak memicu Crash/Macet sewaktu Login
         function prosesLogin() {
             const userIn = document.getElementById("username").value;
             const tokenIn = document.getElementById("token").value;
@@ -606,6 +563,7 @@
 
             if(tokenIn === "statistika") {
                 namaMahasiswa = userIn;
+                // Diperbaiki untuk menargetkan elemen teks di Status Bar
                 document.getElementById("txtStatusNama").innerText = `Mahasiswa: ${namaMahasiswa}`;
                 document.getElementById("loginWrapper").style.display = "none";
                 document.getElementById("appWrapper").style.display = "flex";
@@ -615,135 +573,242 @@
             }
         }
 
-        function keluarKelas() {
-            document.getElementById("username").value = "";
-            document.getElementById("token").value = "";
-            document.getElementById("inputLabData").value = "5, 3, 4, 8, 5, 10, 6, 8";
-            document.getElementById("boxHasilLab").style.display = "none";
-            document.getElementById("appWrapper").style.display = "none";
-            document.getElementById("loginWrapper").style.display = "flex";
+        function muatSampelTunggal(jenis) {
+            let inputEl = document.getElementById("inputLabTunggal");
+            if(jenis === 'bayi') inputEl.value = "3.28, 2.56, 4.20, 3.04, 3.12";
+            if(jenis === 'reaksi') inputEl.value = "4, 2, 3, 3, 6, 3";
+            if(jenis === 'kuartil') inputEl.value = "5, 3, 4, 8, 5, 10, 6, 8";
+            hitungLabTunggal();
         }
 
-        function prosesEngineKalkulatorDanGrafik() {
-            let str = document.getElementById("inputLabData").value;
-            if(str.trim() === "") { alert("Mohon masukkan data angka terlebih dahulu!"); return; }
-
-            let arr = str.split(",").map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
-            if(arr.length === 0) { alert("Format urutan data angka tidak valid!"); return; }
-
-            arr.sort((a, b) => a - b);
-            let n = arr.length;
-            document.getElementById("labUrut").innerText = arr.join(", ");
-            document.getElementById("labN").innerText = n;
-
-            // 1. Mean
-            let sum = arr.reduce((a, b) => a + b, 0);
-            let mean = sum / n;
-            document.getElementById("labMean").innerText = mean.toFixed(2);
-
-            // 2. Kuartil Interpolasi
-            function hitungKuartil(i, dataArr) {
-                let pos = (i / 4) * (dataArr.length + 1);
-                let idxSebelum = Math.floor(pos);
-                let pecahan = pos - idxSebelum;
-                let valA = dataArr[Math.max(0, idxSebelum - 1)];
-                let valB = dataArr[Math.min(dataArr.length - 1, idxSebelum)];
-                if (idxSebelum > dataArr.length) return dataArr[dataArr.length - 1];
-                if (idxSebelum < 1) return dataArr[0];
-                return valA + pecahan * (valB - valA);
+        function muatSampelKelompok(jenis) {
+            let areaEl = document.getElementById("inputLabKelompok");
+            if(jenis === 'nilai') {
+                areaEl.value = "31-40, 4\n41-50, 6\n51-60, 10\n61-70, 4\n71-80, 6";
             }
+            hitungLabKelompok();
+        }
 
-            let q1 = hitungKuartil(1, arr);
-            let q2 = hitungKuartil(2, arr);
-            let q3 = hitungKuartil(3, arr);
+        function gantiPanelLab(mode) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
+            document.querySelectorAll('.lab-panel').forEach(p => p.classList.remove('active-panel'));
+            document.getElementById("boxHasilLab").style.display = "none";
+            if(mode === 'tunggal') {
+                document.getElementById('btnTabTunggal').classList.add('active-tab');
+                document.getElementById('panelLabTunggal').classList.add('active-panel');
+            } else {
+                document.getElementById('btnTabKelompok').classList.add('active-tab');
+                document.getElementById('panelLabKelompok').classList.add('active-panel');
+            }
+        }
 
-            document.getElementById("labQ1").innerText = q1.toFixed(2);
-            document.getElementById("labMedian").innerText = q2.toFixed(2);
-            document.getElementById("labQ3").innerText = q3.toFixed(2);
-            document.getElementById("labRAK").innerText = (q3 - q1).toFixed(2);
+        const kumpulanSoal = [
+            { q: "Diberikan data nilai praktikum: 5, 6, 7, 8, 9. Hitunglah nilai Mean (rata-rata) data tunggal tersebut!", a: ["6", "6.5", "7", "7.5"], correct: 2 },
+            { q: "Berapakah nilai letak Median dari sekumpulan data acak berikut: 3, 8, 6, 4, 7?", a: ["4", "6", "7", "5"], correct: 1 },
+            { q: "Tentukan nilai Median jika variabel data genap terstruktur sebagai berikut: 2, 4, 6, 8.", a: ["4", "5", "6", "4.5"], correct: 1 },
+            { q: "Berdasarkan sampel data nomor sepatu: 38, 39, 40, 39, 41, 39, 38. Modus sampel tersebut adalah...", a: ["38", "39", "40", "41"], correct: 1 },
+            { q: "Jika nilai total akumulasi dari 5 sampel data adalah 40, berapakah nilai rata-rata hitungnya?", a: ["6", "7", "8", "9"], correct: 2 },
+            { q: "Berapakah nilai Rentang (Range) dari kelompok data tunggal berikut: 12, 5, 22, 17, 9, 14?", a: ["13", "17", "9", "22"], correct: 1 },
+            { q: "Cabang ilmu statistika yang bertujuan meringkas, menyajikan, dan mendeskripsikan karakteristik data sampel terbatas tanpa menarik kesimpulan umum populasi disebut...", a: ["Statistika Inferensial", "Statistika Deskriptif", "Statistika Teoretis", "Statistika Non-Parametrik"], correct: 1 },
+            { q: "Manakah di antara pilihan berikut yang merupakan produk keluaran (output) utama statistika deskriptif?", a: ["Nilai p-value uji hipotesis", "Koefisien regresi linear", "Tabel frekuensi dan grafik distribusi", "Hasil pengujian ANOVA"], correct: 2 },
+            { q: "Keseluruhan totalitas unit, objek, atau individu yang memiliki karakteristik tertentu yang ingin diteliti dinamakan...", a: ["Sample acak", "Populasi", "Variabel kuadrat", "Parameter amatan"], correct: 1 },
+            { q: "Himpunan bagian representatif yang diambil dari kelompok besar untuk mewakili kondisi kelompok induknya dinamakan...", a: ["Sampel", "Kluster data", "Eksperimen", "Varians"], correct: 0 },
+            { q: "Data yang berbentuk deskripsi kata, label, atau atribut non-numerik (seperti Suku Bangsa, Agama, Jenis Pekerjaan) diklasifikasikan sebagai data...", a: ["Kuantitatif", "Diskrit", "Kualitatif", "Kontinu"], correct: 2 },
+            { q: "Data numerik kuantitatif yang diperoleh dari aktivitas 'membilang atau menghitung' dan menghasilkan bilangan bulat utuh tanpa pecahan (contoh: Jumlah Anak, Jumlah Mobil) disebut data...", a: ["Kualitatif", "Kontinu", "Diskrit", "Ordinal"], correct: 2 },
+            { q: "Data hasil aktivitas 'mengukur' yang nilainya berada dalam rentang kontinu dan bisa berbentuk pecahan desimal (contoh: Tinggi Badan, Berat Badan, Waktu Detik) adalah...", a: ["Data Diskrit", "Data Kontinu", "Data Nominal", "Data Kualitatif"], correct: 1 },
+            { q: "Variabel 'Tingkat Pendidikan Terakhir (SD, SMP, SMA, S1)' memiliki karakteristik urutan tingkatan yang jelas, namun jarak tidak sama. Data ini berada pada skala...", a: ["Nominal", "Rasio", "Interval", "Ordinal"], correct: 3 },
+            { q: "Manakah contoh variabel di bawah ini yang diukur menggunakan tingkatan tertinggi yaitu skala Rasio?", a: ["Nomor punggung pemain bola", "Suhu ruangan dalam derajat Celsius", "Berat badan dan pendapatan bulanan", "Peringkat kelulusan juara kelas"], correct: 2 },
+            { q: "Kelompok data amatan tunggal yang memiliki ciri TIDAK MEMILIKI nilai modus sama sekali karena seluruh angka muncul dengan frekuensi sama besar dinamakan...", a: ["Unimodus", "Bimodus", "Multimodus", "Amodus"], correct: 3 },
+            { q: "Jika kelompok data memiliki dua nilai puncak modus berbeda yang frekuensi kemunculannya sama-sama terbesar, maka disebut...", a: ["Amodus", "Bimodus", "Unimodus", "Multimodus"], correct: 1 },
+            { q: "Pada rumus mean data kelompok, lambang 'x_i' di dalam pembilang mewakili variabel dari...", a: ["Tepi bawah kelas interval", "Batas atas kelas interval", "Titik tengah kelas interval", "Frekuensi kumulatif kelas"], correct: 2 },
+            { q: "Komponen 'Tb' di dalam perhitungan median dan modus data kelompok didefinisikan sebagai...", a: ["Tepi bawah kelas interval terkait", "Batas atas kelas interval terkait", "Panjang kelas interval", "Total frekuensi kumulatif"], correct: 0 },
+            { q: "Manakah pernyataan di bawah ini yang paling tepat menggambarkan karakteristik utama skala Rasio dalam statistika?", a: ["Hanya berupa kategori kata", "Memiliki letak urutan peringkat saja", "Nol tidak bersifat mutlak", "Memiliki nilai nol mutlak (nilai 0 berarti variabel kosong/habis)"], correct: 3 }
+        ];
 
-            // 3. Modus
-            let frekuensi = {}; let maxFreq = 0; let modusList = [];
-            arr.forEach(x => { frekuensi[x] = (frekuensi[x] || 0) + 1; if(frekuensi[x] > maxFreq) maxFreq = frekuensi[x]; });
-            for(let key in frekuensi) { if(frekuensi[key] === maxFreq) modusList.push(key); }
-            document.getElementById("labModus").innerText = modusList.length === Object.keys(frekuensi).length ? "Tidak ada" : modusList.join(", ");
-
-            // 4. Rentang
-            let range = arr[n-1] - arr[0];
-            document.getElementById("labRentang").innerText = range.toFixed(2);
-
-            // 5. Varians & Tabel Bantu
-            let sumSquare = 0;
-            let htmlTabel = `<table class="table-stat"><tr><th>No (i)</th><th>Nilai (X<sub>i</sub>)</th><th>Kuadrat (X<sub>i</sub><sup>2</sup>)</th></tr>`;
-            arr.forEach((val, idx) => {
-                let sq = val * val;
-                sumSquare += sq;
-                htmlTabel += `<tr><td>${idx + 1}</td><td>${val}</td><td>${sq}</td></tr>`;
-            });
-            htmlTabel += `<tr style="font-weight:bold; background: rgba(15,23,42,0.6);"><td>Total (&Sigma;)</td><td>&Sigma;x = ${sum}</td><td>&Sigma;x<sup>2</sup> = ${sumSquare}</td></tr></table>`;
-            document.getElementById("wrapperTabelBantu").innerHTML = htmlTabel;
-
-            let varians = (n > 1) ? (1 / (n - 1)) * (sumSquare - ((sum * sum) / n)) : 0;
-            let sd = Math.sqrt(varians);
-            document.getElementById("labVarians").innerText = varians.toFixed(2);
-            document.getElementById("labSD").innerText = sd.toFixed(2);
-
-            document.getElementById("boxHasilLab").style.display = "block";
-
-            // LOGIKA GENERATE DIAGRAM GRAFIK
-            let labelsGrafik = Object.keys(frekuensi);
-            let dataFrekuensi = Object.values(frekuensi);
-
+        function generateGrafikLab(labels, data) {
             if(referensiBarChart) referensiBarChart.destroy();
             if(referensiPieChart) referensiPieChart.destroy();
-
             Chart.defaults.color = '#cbd5e1';
 
             let ctxBar = document.getElementById('barChartCanvas').getContext('2d');
             referensiBarChart = new Chart(ctxBar, {
                 type: 'bar',
-                data: {
-                    labels: labelsGrafik,
-                    datasets: [{ data: dataFrekuensi, backgroundColor: '#6366f1', borderRadius: 4 }]
-                },
+                data: { labels: labels, datasets: [{ data: data, backgroundColor: '#6366f1', borderRadius: 4 }] },
                 options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: { 
-                        y: { 
-                            beginAtZero: true, 
-                            grid: { color: 'rgba(255,255,255,0.05)' }, 
-                            ticks: { font: { size: 10 }, stepSize: 1 },
-                            title: { display: true, text: 'Frekuensi (y)' }
-                        }, 
-                        x: { grid: { display: false }, title: { display: true, text: 'Nilai Data (x)' } } 
-                    }
+                    responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, title: { display: true, text: 'Frekuensi (y)' } }, x: { title: { display: true, text: 'Nilai/Kelas (x)' } } }
                 }
             });
 
-            let totalDataPie = dataFrekuensi.reduce((a, b) => a + b, 0);
-            let labelsDenganPersen = labelsGrafik.map((label, index) => {
-                let hitungPersen = ((dataFrekuensi[index] / totalDataPie) * 100).toFixed(1);
-                return label + " (" + hitungPersen + "%)";
-            });
+            let totalPie = data.reduce((a, b) => a + b, 0);
+            let labelsPersen = labels.map((l, i) => `${l} (${((data[i]/totalPie)*100).toFixed(1)}%)`);
 
             let ctxPie = document.getElementById('pieChartCanvas').getContext('2d');
             referensiPieChart = new Chart(ctxPie, {
                 type: 'pie',
-                data: {
-                    labels: labelsDenganPersen,
-                    datasets: [{ data: dataFrekuensi, backgroundColor: ['#6366f1', '#10b981', '#38bdf8', '#fbbf24', '#f87171'], borderWidth: 0 }]
-                },
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'right', labels: { font: { size: 10 } } } }
-                }
+                data: { labels: labelsPersen, datasets: [{ data: data, backgroundColor: ['#6366f1', '#10b981', '#38bdf8', '#fbbf24', '#f87171'], borderWidth: 0 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { size: 10 } } } } }
             });
         }
 
-        // --- SISTEM KUIS (20 SOAL LENGKAP) ---
+        function keluarKelas() {
+            document.getElementById("username").value = ""; document.getElementById("token").value = "";
+            document.getElementById("boxHasilLab").style.display = "none";
+            document.getElementById("appWrapper").style.display = "none"; document.getElementById("loginWrapper").style.display = "flex";
+        }
+
+        // FIXED ENGINE 4: Menyinkronkan variabel kuartil dan memperbarui nama 'idxSebelum' agar komputasi tombol data tunggal bekerja total tanpa macet
+        function hitungLabTunggal() {
+            let str = document.getElementById("inputLabTunggal").value;
+            let arr = str.split(",").map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
+            if(arr.length === 0) { alert("Data tidak valid!"); return; }
+
+            arr.sort((a, b) => a - b);
+            let n = arr.length;
+            let sum = arr.reduce((a, b) => a + b, 0);
+            let mean = sum / n;
+
+            let med = 0; let mid = Math.floor(n / 2);
+            if(n % 2 !== 0) { med = arr[mid]; } else { med = (arr[mid-1] + arr[mid]) / 2; }
+
+            let frekuensi = {}; let maxF = 0; let modArr = [];
+            arr.forEach(x => { frekuensi[x] = (frekuensi[x] || 0) + 1; if(frekuensi[x] > maxF) maxF = frekuensi[x]; });
+            for(let k in frekuensi) { if(frekuensi[k] === maxF) modArr.push(k); }
+            
+            let tipeModus = "";
+            if (modArr.length === Object.keys(frekuensi).length) { tipeModus = "Amodus (Tidak ada modus)"; }
+            else if (modArr.length === 1) { tipeModus = "Unimodus (" + modArr[0] + ")"; }
+            else if (modArr.length === 2) { tipeModus = "Bimodus (" + modArr.join(", ") + ")"; }
+            else { tipeModus = "Multimodus (" + modArr.join(", ") + ")"; }
+
+            let range = arr[n-1] - arr[0];
+
+            let m1_q1, m1_q2, m1_q3;
+            let pos_q2 = (n + 1) / 2;
+            m1_q2 = med;
+            let n_q2_star = Math.floor(pos_q2);
+            let pos_q1_q3 = (n_q2_star + 1) / 2;
+            
+            function nilaiBelahDua(posisi, data, cariAtas) {
+                if (posisi % 1 === 0) { return cariAtas ? data[data.length - posisi] : data[posisi - 1]; } 
+                else {
+                    let idx = Math.floor(posisi);
+                    return cariAtas ? (data[data.length - idx] + data[data.length - idx - 1]) / 2 : (data[idx - 1] + data[idx]) / 2;
+                }
+            }
+            m1_q1 = nilaiBelahDua(pos_q1_q3, arr, false);
+            m1_q3 = nilaiBelahDua(pos_q1_q3, arr, true);
+
+            document.getElementById("m1-q1").innerText = m1_q1.toFixed(2);
+            document.getElementById("m1-q2").innerText = m1_q2.toFixed(2);
+            document.getElementById("m1-q3").innerText = m1_q3.toFixed(2);
+            document.getElementById("m1-rak").innerText = (m1_q3 - m1_q1).toFixed(2);
+
+            function hitungKuartilInterpolasi(i, dataArr) {
+                let pos = (i / 4) * (dataArr.length + 1);
+                let idxSebelum = Math.floor(pos); 
+                let pecahan = pos - idxSebelum;
+                let valA = dataArr[Math.max(0, idxSebelum - 1)];
+                let valB = dataArr[Math.min(dataArr.length - 1, idxSebelum)];
+                if (idxSebelum > dataArr.length) return dataArr[dataArr.length - 1];
+                if (idxSebelum < 1) return dataArr[0]; // PENYESUAIAN VARIABEL: FIXED SINKRON
+                return valA + pecahan * (valB - valA);
+            }
+            let m2_q1 = hitungKuartilInterpolasi(1, arr);
+            let m2_q2 = hitungKuartilInterpolasi(2, arr);
+            let m2_q3 = hitungKuartilInterpolasi(3, arr);
+
+            document.getElementById("m2-q1").innerText = m2_q1.toFixed(2);
+            document.getElementById("m2-q2").innerText = m2_q2.toFixed(2);
+            document.getElementById("m2-q3").innerText = m2_q3.toFixed(2);
+            document.getElementById("m2-rak").innerText = (m2_q3 - m2_q1).toFixed(2);
+
+            let devKuadrat = arr.reduce((s, v) => s + Math.pow(v - mean, 2), 0);
+            let v1_var = n > 1 ? devKuadrat / (n - 1) : 0;
+            document.getElementById("v1-var").innerText = v1_var.toFixed(2);
+            document.getElementById("v1-sd").innerText = Math.sqrt(v1_var).toFixed(2);
+
+            let sumSq = arr.reduce((a, b) => a + (b * b), 0);
+            let v2_var = n > 1 ? (1 / (n - 1)) * (sumSq - ((sum * sum) / n)) : 0;
+            document.getElementById("v2-var").innerText = v2_var.toFixed(2);
+            document.getElementById("v2-sd").innerText = Math.sqrt(v2_var).toFixed(2);
+
+            document.getElementById("displayHasilAngka").innerHTML = `
+                <p><b>Data Terurut Kuantitatif:</b> [ ${arr.join(", ")} ] (n = ${n})</p>
+                <p><b>Mean (Rata-rata):</b> ${mean.toFixed(2)} | <b>Median:</b> ${med.toFixed(2)} | <b>Karakter Modus:</b> ${tipeModus} | <b>Rentang:</b> ${range.toFixed(2)}</p>
+            `;
+
+            let htmlTable = `<table class="table-stat"><tr><th>No (i)</th><th>Nilai (X<sub>i</sub>)</th><th>Kuadrat (X<sub>i</sub><sup>2</sup>)</th></tr>`;
+            arr.forEach((v, i) => htmlTable += `<tr><td>${i+1}</td><td>${v}</td><td>${v*v}</td></tr>`);
+            htmlTable += `<tr style="font-weight:bold;"><td>Total</td><td>&Sigma;x = ${sum}</td><td>&Sigma;x<sup>2</sup> = ${sumSq}</td></tr></table>`;
+            
+            document.getElementById("judulTabelBantu").innerText = "📋 Tabel Bantu Komputasi Nilai Kuadrat Tunggal (Σxi²)";
+            document.getElementById("wrapperTabelBantu").innerHTML = htmlTable;
+            document.getElementById("panelKomparasiMetode").style.display = "grid";
+            document.getElementById("boxHasilLab").style.display = "block";
+
+            generateGrafikLab(Object.keys(frekuensi), Object.values(frekuensi));
+        }
+
+        function hitungLabKelompok() {
+            let txt = document.getElementById("inputLabKelompok").value.trim();
+            let baris = txt.split("\n");
+            let kelasList = []; let totalN = 0;
+
+            for(let i=0; i<baris.length; i++) {
+                if(baris[i].trim() === "") continue;
+                let part = baris[i].split(",");
+                if(part.length < 2) continue;
+                let rangePart = part[0].split("-");
+                let bb = parseFloat(rangePart[0].trim());
+                let ba = parseFloat(rangePart[1].trim());
+                let freq = parseFloat(part[1].trim());
+                if(isNaN(bb) || isNaN(ba) || isNaN(freq)) continue;
+
+                let xi = (bb + ba) / 2; totalN += freq;
+                kelasList.push({ label: part[0].trim(), bb: bb, ba: ba, f: freq, xi: xi });
+            }
+
+            if(kelasList.length === 0) { alert("Format data kelompok salah!"); return; }
+            let p = kelasList[0].ba - kelasList[0].bb + 1;
+            let sumFX = 0; let fk = 0;
+            kelasList.forEach(k => { fk += k.f; k.fk = fk; sumFX += (k.f * k.xi); });
+
+            let meanKelompok = sumFX / totalN;
+
+            let letakMed = totalN / 2;
+            let idxMed = kelasList.findIndex(k => k.fk >= letakMed);
+            let kelasMed = kelasList[idxMed];
+            let fkSebelumMed = idxMed > 0 ? kelasList[idxMed - 1].fk : 0;
+            let tbMed = kelasMed.bb - 0.5;
+            let medianKelompok = tbMed + (((letakMed - fkSebelumMed) / kelasMed.f) * p);
+
+            let maxF = 0; let idxMod = 0;
+            kelasList.forEach((k, i) => { if(k.f > maxF) { maxF = k.f; idxMod = i; } });
+            let kelasMod = kelasList[idxMod];
+            let fSblm = idxMod > 0 ? kelasList[idxMod - 1].f : 0;
+            let fSsdh = idxMod < kelasList.length - 1 ? kelasList[idxMod + 1].f : 0;
+            let d1 = kelasMod.f - fSblm; let d2 = kelasMod.f - fSsdh;
+            let tbMod = kelasMod.bb - 0.5;
+            let modusKelompok = tbMod + ((d1 / (d1 + d2)) * p);
+
+            let htmlTable = `<table class="table-stat"><tr><th>Kelas Interval</th><th>Frekuensi (f)</th><th>Titik Tengah (x)</th><th>f * x</th><th>Fk</th></tr>`;
+            kelasList.forEach(k => htmlTable += `<tr><td>${k.label}</td><td>${k.f}</td><td>${k.xi}</td><td>${k.f * k.xi}</td><td>${k.fk}</td></tr>`);
+            htmlTable += `<tr style="font-weight:bold;"><td>Total</td><td>&Sigma;f = ${totalN}</td><td>-</td><td>&Sigma;(f*x) = ${sumFX}</td><td>-</td></tr></table>`;
+
+            document.getElementById("displayHasilAngka").innerHTML = `
+                <p><b>Analisis Kuantitatif Data Kelompok (Total n = ${totalN}):</b></p>
+                <p><b>Mean Kelompok:</b> ${meanKelompok.toFixed(2)} | <b>Median Kelompok:</b> ${medianKelompok.toFixed(2)} | <b>Modus Kelompok:</b> ${modusKelompok.toFixed(2)}</p>
+            `;
+            document.getElementById("judulTabelBantu").innerText = "📋 Tabel Distribusi Frekuensi Data Kelompok";
+            document.getElementById("wrapperTabelBantu").innerHTML = htmlTable;
+            document.getElementById("panelKomparasiMetode").style.display = "none";
+            document.getElementById("boxHasilLab").style.display = "block";
+
+            generateGrafikLab(kelasList.map(k => k.label), kelasList.map(k => k.f));
+        }
+
+        // --- SISTEM KUIS ---
         function bukaKuisNav(menuId) { indeksKuis = 0; poinBenar = 0; navigasiKe('pageKuis', menuId); muatSoalUjian(); }
         function muatSoalUjian() {
             let data = kumpulanSoal[indeksKuis];
@@ -758,7 +823,7 @@
         function tampilkanNilaiAkhir() {
             let finalSkor = Math.round((poinBenar / kumpulanSoal.length) * 100);
             document.getElementById("txtNilaiFinal").innerText = finalSkor;
-            document.getElementById("txtEvaluasiMutu").innerText = finalSkor >= 80 ? "Sangat Memuaskan! Anda berhasil menguasai seluruh cakupan materi dasar kompetensi praktikum statistika deskriptif." : "Silakan pelajari kembali rangkuman komparasi teori data dan skala NOIR pada halaman dashboard.";
+            document.getElementById("txtEvaluasiMutu").innerText = finalSkor >= 80 ? "Sangat Memuaskan! Anda berhasil menguasai kompetensi dasar praktikum." : "Silakan pelajari kembali rangkuman konsep komputasi kelompok data.";
             navigasiKe('pageSkor', 'm-kuis');
         }
     </script>
