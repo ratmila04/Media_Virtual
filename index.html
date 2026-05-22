@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Statistika - Ukuran Pemusatan & Penyebaran Data</title>
+    <title>Portal Statistika - Edisi Pengolahan Data Lengkap</title>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
@@ -357,11 +357,85 @@
 
             <div id="pagePenyebaran" class="page-section">
                 <div class="card">
-                    <h2>📖 Ukuran Penyebaran Data (Ukuran Variasi)</h2>
-                    <p style="color: var(--text-muted);">Ukuran penyebaran digunakan untuk melihat sejauh mana keragaman variasi data menyimpang dari nilai pusatnya.</p>
+                    <h2>📖 Ukuran Penyebaran Data (Materi Lengkap)</h2>
+                    <p style="color: var(--text-muted);">Ukuran penyebaran data digunakan untuk mengetahui seberapa jauh nilai-nilai data menyimpang dari titik pusatnya.</p>
                     
-                    <h3>1. Varians Sampel (s<sup>2</sup>)</h3>
-                    <p>Ukuran keragaman sampel kuadrat yang dihitung menggunakan formula hitung praktis:</p>
+                    <h3 style="color: #38bdf8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">1. Jangkauan (Range)</h3>
+                    <p>Selisih antara nilai terbesar (maksimum) dan nilai terkecil (minimum) dalam kumpulan data:</p>
+                    <div class="rumus-box">
+                        R = X<sub>maks</sub> - X<sub>min</sub>
+                    </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>R</b> : Jangkauan atau Rentang (Range)<br>
+                        • <b>X<sub>maks</sub></b> : Skor nilai amatan terbesar dalam data<br>
+                        • <b>X<sub>min</sub></b> : Skor nilai amatan terkecil dalam data
+                    </div>
+
+                    <h3 style="color: #38bdf8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; margin-top:30px;">2. Jangkauan Antarkuartil (IQR)</h3>
+                    <p>Selisih antara kuartil atas (Q<sub>3</sub>) dan kuartil bawah (Q<sub>1</sub>):</p>
+                    <div class="rumus-box">
+                        IQR = Q<sub>3</sub> - Q<sub>1</sub>
+                    </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>IQR</b> : Jangkauan Antarkuartil (Interquartile Range)<br>
+                        • <b>Q<sub>3</sub></b> : Nilai batas kuartil ketiga (Atas)<br>
+                        • <b>Q<sub>1</sub></b> : Nilai batas kuartil pertama (Bawah)
+                    </div>
+
+                    <h3 style="color: #38bdf8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; margin-top:30px;">3. Simpangan Kuartil (Q<sub>d</sub>)</h3>
+                    <p>Nilai setengah dari jangkauan antarkuartil (IQR):</p>
+                    <div class="rumus-box">
+                        Q<sub>d</sub> = 
+                        <div class="fraction">
+                            <span class="numerator">Q<sub>3</sub> - Q<sub>1</sub></span>
+                            <span class="denominator">2</span>
+                        </div>
+                    </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>Q<sub>d</sub></b> : Simpangan Kuartil (Semi-Interquartile Range)<br>
+                        • <b>Q<sub>3</sub></b> : Nilai kuartil atas<br>
+                        • <b>Q<sub>1</sub></b> : Nilai kuartil bawah
+                    </div>
+
+                    <h3 style="color: #38bdf8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; margin-top:30px;">4. Simpangan Rata-rata (Mean Deviation)</h3>
+                    <p>Nilai rata-rata dari selisih absolut (mutlak) setiap data amatan terhadap rata-rata hitungnya (mean):</p>
+                    <div class="rumus-box">
+                        SR = 
+                        <div class="fraction">
+                            <span class="numerator">&Sigma;|x<sub>i</sub> - x̄|</span>
+                            <span class="denominator">n</span>
+                        </div>
+                    </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>SR</b> : Simpangan Rata-rata (Mean Deviation)<br>
+                        • <b>|x<sub>i</sub> - x̄|</b> : Nilai mutlak/absolut selisih data ke-i dari rata-rata (menghilangkan tanda minus)<br>
+                        • <b>n</b> : Banyaknya data sampel amatan
+                    </div>
+
+<h3 style="color: #38bdf8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; margin-top:30px;">5. Varians (Variance)</h3>
+                    <p>Rata-rata kuadrat selisih dari masing-masing data terhadap nilai rata-ratanya (mean):</p>
+                    
+                    <div class="sub-rumus-title">A. Varians Populasi (Sesuai Gambar Lampiran)</div>
+                    <div class="rumus-box">
+                        &sigma;<sup>2</sup> = 
+                        <div class="fraction">
+                            <span class="numerator">&Sigma;(x - &mu;)<sup>2</sup></span>
+                            <span class="denominator">N</span>
+                        </div>
+                    </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>&sigma;<sup>2</sup></b> (Sigma Kuadrat) : Nilai varians tingkat populasi umum<br>
+                        • <b>x</b> : Nilai dari setiap elemen data individu<br>
+                        • <b>&mu;</b> (Mu) : Nilai rata-rata (mean) dari keseluruhan data populasi<br>
+                        • <b>N</b> : Ukuran total besarnya populasi
+                    </div>
+
+                    <div class="sub-rumus-title" style="margin-top:20px;">B. Varians Sampel (Rumus Praktis Aljabar Buku UT)</div>
                     <div class="rumus-box">
                         s<sup>2</sup> = 
                         <div class="fraction">
@@ -376,25 +450,34 @@
                     </div>
                     <div class="keterangan-rumus">
                         <b>Keterangan Simbol:</b><br>
-                        • <b>s<sup>2</sup></b> : Varians (ragam) tingkat sampel<br>
-                        • <b>n</b> : Ukuran sampel atau total banyaknya data amatan<br>
-                        • <b>&Sigma;x<sub>i</sub><sup>2</sup></b> : Jumlah dari masing-masing nilai data yang telah dikuadratkan terlebih dahulu (x<sub>1</sub><sup>2</sup> + x<sub>2</sub><sup>2</sup> + ...)<br>
-                        • <b>(&Sigma;x<sub>i</sub>)<sup>2</sup></b> : Kuadrat dari total penjumlahan seluruh nilai data amatan
+                        • <b>s<sup>2</sup></b> : Nilai varians tingkat sampel penelitian<br>
+                        • <b>n - 1</b> : Derajat kebebasan (banyak data sampel dikurangi satu)<br>
+                        • <b>&Sigma;x<sub>i</sub><sup>2</sup></b> : Jumlah dari masing-masing nilai data yang telah dikuadratkan terlebih dahulu<br>
+                        • <b>(&Sigma;x<sub>i</sub>)<sup>2</sup></b> : Kuadrat dari total hasil penjumlahan seluruh nilai data amatan
                     </div>
 
-                    <h3>2. Standar Deviasi Sampel / Simpangan Baku (s)</h3>
-                    <p>Diperoleh dengan menarik akar pangkat dua dari hasil akumulasi nilai parameter varians sampel:</p>
+                    <h3 style="color: #38bdf8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; margin-top:30px;">6. Simpangan Baku (Standar Deviasi)</h3>
+                    <p>Ukuran penyebaran data yang diperoleh dengan menarik akar kuadrat dari varians untuk mengembalikan satuan data ke bentuk aslinya:</p>
+                    
+                    <div class="sub-rumus-title">A. Simpangan Baku Populasi</div>
+                    <div class="rumus-box">
+                        &sigma; = <span class="akar">&radic;</span><span class="garis-akar">&sigma;<sup>2</sup></span>
+                    </div>
+                    <div class="keterangan-rumus">
+                        <b>Keterangan Simbol:</b><br>
+                        • <b>&sigma;</b> (Sigma) : Standar deviasi tingkat populasi<br>
+                        • <b>&sigma;<sup>2</sup></b> : Nilai hasil perhitungan varians populasi
+                    </div>
+
+                    <div class="sub-rumus-title" style="margin-top:20px;">B. Simpangan Baku Sampel</div>
                     <div class="rumus-box">
                         s = <span class="akar">&radic;</span><span class="garis-akar">s<sup>2</sup></span>
                     </div>
                     <div class="keterangan-rumus">
                         <b>Keterangan Simbol:</b><br>
-                        • <b>s</b> : Standar deviasi (simpangan baku) tingkat sampel<br>
-                        • <b>s<sup>2</sup></b> : Hasil nilai perhitungan varians sampel
+                        • <b>s</b> : Standar deviasi tingkat sampel amatan<br>
+                        • <b>s<sup>2</sup></b> : Nilai hasil perhitungan varians sampel
                     </div>
-
-                    <h3>3. Rentang (Range)</h3>
-                    <div class="rumus-box">Rentang = Data Terbesar - Data Terkecil</div>
                 </div>
             </div>
 
@@ -536,7 +619,7 @@
         let referensiBarChart = null;
         let referensiPieChart = null;
 
-        // FIXED SOLUSI JAVASCRIPT UTAMA (DI-ANGKAT): Deklarasi fungsi navigasi diletakkan paling atas agar bisa dibaca browser saat proses login dipicu
+        // FIXED ENGINE 1: Navigasi Antar Halaman Berfungsi Penuh Sejad Awal
         function navigasiKe(sectionId, menuId) {
             document.querySelectorAll('.page-section').forEach(sec => {
                 sec.classList.remove('active-section');
@@ -551,7 +634,7 @@
             }
         }
 
-        // FIXED SINKRONISASI ELEMEN: Mengubah target ID dari txtStatusNama menjadi navUserStatus agar tidak memicu Crash/Macet sewaktu Login
+        // FIXED ENGINE 2: Otentikasi Masuk Mengarah Sempurna ke Dashboard
         function prosesLogin() {
             const userIn = document.getElementById("username").value;
             const tokenIn = document.getElementById("token").value;
@@ -563,7 +646,6 @@
 
             if(tokenIn === "statistika") {
                 namaMahasiswa = userIn;
-                // Diperbaiki untuk menargetkan elemen teks di Status Bar
                 document.getElementById("txtStatusNama").innerText = `Mahasiswa: ${namaMahasiswa}`;
                 document.getElementById("loginWrapper").style.display = "none";
                 document.getElementById("appWrapper").style.display = "flex";
@@ -572,6 +654,30 @@
                 alert("Token masuk salah! Masukkan token: statistika");
             }
         }
+
+        // FIXED ENGINE 3: BANK SOAL 20 NOMOR UT LENGKAP DIKEMBALIKAN UTUH KE JAVASCRIPT
+        const kumpulanSoal = [
+            { q: "Diberikan data nilai praktikum: 5, 6, 7, 8, 9. Hitunglah nilai Mean (rata-rata) data tunggal tersebut!", a: ["6", "6.5", "7", "7.5"], correct: 2 },
+            { q: "Berapakah nilai letak Median dari sekumpulan data acak berikut: 3, 8, 6, 4, 7?", a: ["4", "6", "7", "5"], correct: 1 },
+            { q: "Tentukan nilai Median jika variabel data genap terstruktur sebagai berikut: 2, 4, 6, 8.", a: ["4", "5", "6", "4.5"], correct: 1 },
+            { q: "Berdasarkan sampel data nomor sepatu: 38, 39, 40, 39, 41, 39, 38. Modus sampel tersebut adalah...", a: ["38", "39", "40", "41"], correct: 1 },
+            { q: "Jika nilai total akumulasi dari 5 sampel data adalah 40, berapakah nilai rata-rata hitungnya?", a: ["6", "7", "8", "9"], correct: 2 },
+            { q: "Berapakah nilai Rentang (Range) dari kelompok data tunggal berikut: 12, 5, 22, 17, 9, 14?", a: ["13", "17", "9", "22"], correct: 1 },
+            { q: "Cabang ilmu statistika yang bertujuan meringkas, menyajikan, dan mendeskripsikan karakteristik data sampel terbatas tanpa menarik kesimpulan umum populasi disebut...", a: ["Statistika Inferensial", "Statistika Deskriptif", "Statistika Teoretis", "Statistika Non-Parametrik"], correct: 1 },
+            { q: "Manakah di antara pilihan berikut yang merupakan produk keluaran (output) utama statistika deskriptif?", a: ["Nilai p-value uji hipotesis", "Koefisien regresi linear", "Tabel frekuensi dan grafik distribusi", "Hasil pengujian ANOVA"], correct: 2 },
+            { q: "Keseluruhan totalitas unit, objek, atau individu yang memiliki karakteristik tertentu yang ingin diteliti dinamakan...", a: ["Sample acak", "Populasi", "Variabel kuadrat", "Parameter amatan"], correct: 1 },
+            { q: "Himpunan bagian representatif yang diambil dari kelompok besar untuk mewakili kondisi kelompok induknya dinamakan...", a: ["Sampel", "Kluster data", "Eksperimen", "Varians"], correct: 0 },
+            { q: "Data yang berbentuk deskripsi kata, label, atau atribut non-numerik (seperti Suku Bangsa, Agama, Jenis Pekerjaan) diklasifikasikan sebagai data...", a: ["Kuantitatif", "Diskrit", "Kualitatif", "Kontinu"], correct: 2 },
+            { q: "Data numerik kuantitatif yang diperoleh dari aktivitas 'membilang atau menghitung' dan menghasilkan bilangan bulat utuh tanpa pecahan (contoh: Jumlah Anak, Jumlah Mobil) disebut data...", a: ["Kualitatif", "Kontinu", "Diskrit", "Ordinal"], correct: 2 },
+            { q: "Data hasil aktivitas 'mengukur' yang nilainya berada dalam rentang kontinu dan bisa berbentuk pecahan desimal (contoh: Tinggi Badan, Berat Badan, Waktu Detik) adalah...", a: ["Data Diskrit", "Data Kontinu", "Data Nominal", "Data Kualitatif"], correct: 1 },
+            { q: "Variabel 'Tingkat Pendidikan Terakhir (SD, SMP, SMA, S1)' memiliki karakteristik urutan tingkatan yang jelas, namun jarak tidak sama. Data ini berada pada skala...", a: ["Nominal", "Rasio", "Interval", "Ordinal"], correct: 3 },
+            { q: "Manakah contoh variabel di bawah ini yang diukur menggunakan tingkatan tertinggi yaitu skala Rasio?", a: ["Nomor punggung pemain bola", "Suhu ruangan dalam derajat Celsius", "Berat badan dan pendapatan bulanan", "Peringkat kelulusan juara kelas"], correct: 2 },
+            { q: "Kelompok data amatan tunggal yang memiliki ciri TIDAK MEMILIKI nilai modus sama sekali karena seluruh angka muncul dengan frekuensi sama besar dinamakan...", a: ["Unimodus", "Bimodus", "Multimodus", "Amodus"], correct: 3 },
+            { q: "Jika kelompok data memiliki dua nilai puncak modus berbeda yang frekuensi kemunculannya sama-sama terbesar, maka disebut...", a: ["Amodus", "Bimodus", "Unimodus", "Multimodus"], correct: 1 },
+            { q: "Pada rumus mean data kelompok, lambang 'x_i' di dalam pembilang mewakili variabel dari...", a: ["Tepi bawah kelas interval", "Batas atas kelas interval", "Titik tengah kelas interval", "Frekuensi kumulatif kelas"], correct: 2 },
+            { q: "Komponen 'Tb' di dalam perhitungan median dan modus data kelompok didefinisikan sebagai...", a: ["Tepi bawah kelas interval terkait", "Batas atas kelas interval terkait", "Panjang kelas interval", "Total frekuensi kumulatif"], correct: 0 },
+            { q: "Manakah pernyataan di bawah ini yang paling tepat menggambarkan karakteristik utama skala Rasio dalam statistika?", a: ["Hanya berupa kategori kata", "Meliki letak urutan peringkat saja", "Nol tidak bersifat mutlak", "Memiliki nilai nol mutlak (nilai 0 berarti variabel kosong/habis)"], correct: 3 }
+        ];
 
         function muatSampelTunggal(jenis) {
             let inputEl = document.getElementById("inputLabTunggal");
@@ -601,29 +707,6 @@
                 document.getElementById('panelLabKelompok').classList.add('active-panel');
             }
         }
-
-        const kumpulanSoal = [
-            { q: "Diberikan data nilai praktikum: 5, 6, 7, 8, 9. Hitunglah nilai Mean (rata-rata) data tunggal tersebut!", a: ["6", "6.5", "7", "7.5"], correct: 2 },
-            { q: "Berapakah nilai letak Median dari sekumpulan data acak berikut: 3, 8, 6, 4, 7?", a: ["4", "6", "7", "5"], correct: 1 },
-            { q: "Tentukan nilai Median jika variabel data genap terstruktur sebagai berikut: 2, 4, 6, 8.", a: ["4", "5", "6", "4.5"], correct: 1 },
-            { q: "Berdasarkan sampel data nomor sepatu: 38, 39, 40, 39, 41, 39, 38. Modus sampel tersebut adalah...", a: ["38", "39", "40", "41"], correct: 1 },
-            { q: "Jika nilai total akumulasi dari 5 sampel data adalah 40, berapakah nilai rata-rata hitungnya?", a: ["6", "7", "8", "9"], correct: 2 },
-            { q: "Berapakah nilai Rentang (Range) dari kelompok data tunggal berikut: 12, 5, 22, 17, 9, 14?", a: ["13", "17", "9", "22"], correct: 1 },
-            { q: "Cabang ilmu statistika yang bertujuan meringkas, menyajikan, dan mendeskripsikan karakteristik data sampel terbatas tanpa menarik kesimpulan umum populasi disebut...", a: ["Statistika Inferensial", "Statistika Deskriptif", "Statistika Teoretis", "Statistika Non-Parametrik"], correct: 1 },
-            { q: "Manakah di antara pilihan berikut yang merupakan produk keluaran (output) utama statistika deskriptif?", a: ["Nilai p-value uji hipotesis", "Koefisien regresi linear", "Tabel frekuensi dan grafik distribusi", "Hasil pengujian ANOVA"], correct: 2 },
-            { q: "Keseluruhan totalitas unit, objek, atau individu yang memiliki karakteristik tertentu yang ingin diteliti dinamakan...", a: ["Sample acak", "Populasi", "Variabel kuadrat", "Parameter amatan"], correct: 1 },
-            { q: "Himpunan bagian representatif yang diambil dari kelompok besar untuk mewakili kondisi kelompok induknya dinamakan...", a: ["Sampel", "Kluster data", "Eksperimen", "Varians"], correct: 0 },
-            { q: "Data yang berbentuk deskripsi kata, label, atau atribut non-numerik (seperti Suku Bangsa, Agama, Jenis Pekerjaan) diklasifikasikan sebagai data...", a: ["Kuantitatif", "Diskrit", "Kualitatif", "Kontinu"], correct: 2 },
-            { q: "Data numerik kuantitatif yang diperoleh dari aktivitas 'membilang atau menghitung' dan menghasilkan bilangan bulat utuh tanpa pecahan (contoh: Jumlah Anak, Jumlah Mobil) disebut data...", a: ["Kualitatif", "Kontinu", "Diskrit", "Ordinal"], correct: 2 },
-            { q: "Data hasil aktivitas 'mengukur' yang nilainya berada dalam rentang kontinu dan bisa berbentuk pecahan desimal (contoh: Tinggi Badan, Berat Badan, Waktu Detik) adalah...", a: ["Data Diskrit", "Data Kontinu", "Data Nominal", "Data Kualitatif"], correct: 1 },
-            { q: "Variabel 'Tingkat Pendidikan Terakhir (SD, SMP, SMA, S1)' memiliki karakteristik urutan tingkatan yang jelas, namun jarak tidak sama. Data ini berada pada skala...", a: ["Nominal", "Rasio", "Interval", "Ordinal"], correct: 3 },
-            { q: "Manakah contoh variabel di bawah ini yang diukur menggunakan tingkatan tertinggi yaitu skala Rasio?", a: ["Nomor punggung pemain bola", "Suhu ruangan dalam derajat Celsius", "Berat badan dan pendapatan bulanan", "Peringkat kelulusan juara kelas"], correct: 2 },
-            { q: "Kelompok data amatan tunggal yang memiliki ciri TIDAK MEMILIKI nilai modus sama sekali karena seluruh angka muncul dengan frekuensi sama besar dinamakan...", a: ["Unimodus", "Bimodus", "Multimodus", "Amodus"], correct: 3 },
-            { q: "Jika kelompok data memiliki dua nilai puncak modus berbeda yang frekuensi kemunculannya sama-sama terbesar, maka disebut...", a: ["Amodus", "Bimodus", "Unimodus", "Multimodus"], correct: 1 },
-            { q: "Pada rumus mean data kelompok, lambang 'x_i' di dalam pembilang mewakili variabel dari...", a: ["Tepi bawah kelas interval", "Batas atas kelas interval", "Titik tengah kelas interval", "Frekuensi kumulatif kelas"], correct: 2 },
-            { q: "Komponen 'Tb' di dalam perhitungan median dan modus data kelompok didefinisikan sebagai...", a: ["Tepi bawah kelas interval terkait", "Batas atas kelas interval terkait", "Panjang kelas interval", "Total frekuensi kumulatif"], correct: 0 },
-            { q: "Manakah pernyataan di bawah ini yang paling tepat menggambarkan karakteristik utama skala Rasio dalam statistika?", a: ["Hanya berupa kategori kata", "Memiliki letak urutan peringkat saja", "Nol tidak bersifat mutlak", "Memiliki nilai nol mutlak (nilai 0 berarti variabel kosong/habis)"], correct: 3 }
-        ];
 
         function generateGrafikLab(labels, data) {
             if(referensiBarChart) referensiBarChart.destroy();
@@ -657,7 +740,6 @@
             document.getElementById("appWrapper").style.display = "none"; document.getElementById("loginWrapper").style.display = "flex";
         }
 
-        // FIXED ENGINE 4: Menyinkronkan variabel kuartil dan memperbarui nama 'idxSebelum' agar komputasi tombol data tunggal bekerja total tanpa macet
         function hitungLabTunggal() {
             let str = document.getElementById("inputLabTunggal").value;
             let arr = str.split(",").map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
@@ -711,7 +793,7 @@
                 let valA = dataArr[Math.max(0, idxSebelum - 1)];
                 let valB = dataArr[Math.min(dataArr.length - 1, idxSebelum)];
                 if (idxSebelum > dataArr.length) return dataArr[dataArr.length - 1];
-                if (idxSebelum < 1) return dataArr[0]; // PENYESUAIAN VARIABEL: FIXED SINKRON
+                if (idxSebelum < 1) return dataArr[0]; // VARIABEL FIXED SINKRON
                 return valA + pecahan * (valB - valA);
             }
             let m2_q1 = hitungKuartilInterpolasi(1, arr);
@@ -808,18 +890,41 @@
             generateGrafikLab(kelasList.map(k => k.label), kelasList.map(k => k.f));
         }
 
-        // --- SISTEM KUIS ---
-        function bukaKuisNav(menuId) { indeksKuis = 0; poinBenar = 0; navigasiKe('pageKuis', menuId); muatSoalUjian(); }
+        // --- FIXED KUIS LOGIK ENGINE ---
+        function kuisResetDanMulai() {
+            indeksKuis = 0;
+            poinBenar = 0;
+            muatSoalUjian();
+        }
+        
+        function bukaKuisNav(menuId) { 
+            navigasiKe('pageKuis', menuId); 
+            kuisResetDanMulai(); 
+        }
+        
         function muatSoalUjian() {
             let data = kumpulanSoal[indeksKuis];
             document.getElementById("txtPertanyaan").innerText = `Pertanyaan ${indeksKuis + 1} dari ${kumpulanSoal.length}: ${data.q}`;
-            let container = document.getElementById("boxDaftarOpsi"); container.innerHTML = "";
+            let container = document.getElementById("boxDaftarOpsi"); 
+            container.innerHTML = "";
+            
             data.a.forEach((opsi, idx) => {
-                let btn = document.createElement("button"); btn.className = "opsi-btn"; btn.innerText = opsi;
-                btn.onclick = () => { if(idx === data.correct) poinBenar++; indeksKuis++; if(indeksKuis < kumpulanSoal.length) { muatSoalUjian(); } else { tampilkanNilaiAkhir(); } };
+                let btn = document.createElement("button"); 
+                btn.className = "opsi-btn"; 
+                btn.innerText = opsi;
+                btn.onclick = () => { 
+                    if(idx === data.correct) poinBenar++; 
+                    indeksKuis++; 
+                    if(indeksKuis < kumpulanSoal.length) { 
+                        muatSoalUjian(); 
+                    } else { 
+                        tampilkanNilaiAkhir(); 
+                    } 
+                };
                 container.appendChild(btn);
             });
         }
+        
         function tampilkanNilaiAkhir() {
             let finalSkor = Math.round((poinBenar / kumpulanSoal.length) * 100);
             document.getElementById("txtNilaiFinal").innerText = finalSkor;
